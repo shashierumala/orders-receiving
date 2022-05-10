@@ -1,0 +1,119 @@
+<p-toolbar>
+  <p-button type="button" lable="back" icon="pi pi-arrow-left" (click)="back()"></p-button>
+</p-toolbar>
+<p-toast position="top-center"></p-toast>
+<p-card>
+  <div class=gridView>
+    <div class="ContentViewStyle">
+      <div class="display">
+        <div style="flex:1 1">
+          <div style="place-content: center space-between; display: flex; margin: 0px;">
+            <div>
+              <span class="textStyle">ITEM:</span>
+              <span class="contentStyle">{{selectedOrder?.ITEM}}</span>
+            </div>
+            <div style="display: flex; flex-direction: column;">
+              <span class="textStyle">DIST:</span>
+              <span class="contentStyle">{{selectedOrder?.DIST}}</span>
+            </div>
+            <!-- <div>
+              <span class="textStyle">LOC:</span>
+              <span class="contentStyle"> {{selectedOrder?.LOC}}</span>
+            </div> -->
+          </div>
+          </div>
+        <!-- <div>
+          <div class="row" style="padding:12px 0px;">
+            <div class="width">
+              <span class="textStyle">HEAT:</span>
+              <span class="contentStyle"> {{selectedOrder?.HEAT}}</span>
+            </div>
+            <div class="width">
+              <span class="textStyle">MILL_NO:</span>
+              <span class="contentStyle"> {{selectedOrder?.MILL_NO}}</span>
+            </div>
+            <div class="width">
+              <span class="textStyle">TAG_CON:</span>
+              <span class="contentStyle"> {{selectedOrder?.TAG_CON}}</span>
+            </div>
+          </div>
+        </div> -->
+        <!-- <div class="display">
+          <div class="row" style="padding:12px 0px;">
+            <div class="width">
+              <span class="textStyle">VENDOR:</span>
+              <span class="contentStyle"> {{selectedOrder?.VENDOR}}</span>
+            </div>
+            <div class="width">
+              <span class="textStyle">PCS:</span>
+              <span class="contentStyle"> {{selectedOrder?.PCS}}</span>
+            </div>
+            <div>
+              <span class="textStyle">TAG:</span>
+              <span class="contentStyle">{{selectedOrder?.TAG}}</span>
+            </div>
+          </div>
+          <div class="row" style="padding:12px 0px;">
+            <div class="width">
+              <span class="textStyle">DESC:</span>
+              <span class="contentStyle"> {{selectedOrder?.DESC}}</span>
+            </div>
+            <div class="width">
+              <span class="textStyle">STATUS:</span>
+              <span class="contentStyle"> {{selectedOrder?.STATUS}}</span>
+            </div>
+            <div class="width">
+              <span class="textStyle">PO NUMBER:</span>
+              <span class="contentStyle"> {{selectedOrder?.PONO}}</span>
+            </div>
+            <div class="width">
+              <span class="textStyle">LB PER FT:</span>
+              <span class="contentStyle"> {{selectedOrder?.LB_FT}}</span>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <!-- <div>
+        <div class="row" style="padding:12px 0px;">
+          <div class="width">
+            <span class="textStyle">L:</span>
+            <span class="contentStyle"> {{selectedOrder?.LENGTH}}</span>
+          </div>
+          <div class="width">
+            <span class="textStyle">LMIN:</span>
+            <span class="contentStyle"> {{selectedOrder?.MIN_L}}</span>
+          </div>
+          <div class="width">
+            <span class="textStyle">LMAX:</span>
+            <span class="contentStyle"> {{selectedOrder?.MAX_L}}</span>
+          </div>
+          <div class="width">
+            <span class="textStyle">W:</span>
+            <span class="contentStyle"> {{selectedOrder?.WIDTH}}</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p-button type="button" lable="submit" (click)="onSubmit()">Print Inventory Tag</p-button>
+      </div> -->
+    </div>
+  </div>
+</p-card>
+<div class="grid-container">
+  <div class="ContentViewStyle">
+    <h5 style="padding:8px">Racking Location</h5>
+    <div style="display: flex;">
+      <div>
+        <span class="p-float-label">
+          <input id="float-input" type="text" [(ngModel)]="loc" pInputText>
+        </span>
+        <p-button type="button" lable="submit" (click)="onUpdateClick()" [disabled]="!loc" class="locationButtonStyle">
+          submit</p-button>
+        <br>
+        <h3 *ngIf="errorMessage" style="color: red;">
+          {{errorMessage}}
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>

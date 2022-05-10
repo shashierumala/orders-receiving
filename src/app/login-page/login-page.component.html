@@ -1,0 +1,34 @@
+<div style="display: flex;">
+  <div style="padding:48px">
+    <h5>"Login with your Employee ID and select the District"</h5>
+    <p-progressSpinner *ngIf="isLoading"></p-progressSpinner>
+    <div>
+      <div class="p-float-label" style="padding:24px">
+        <div style="padding-right:8px"><input id="float-input" type="text" [(ngModel)]="empId" pInputText></div>
+        <button pButton type="button" label="clear" class="buttonStyle" (click)="clear()"></button>
+      </div>
+      <div class="grid-container">
+        <button pButton type="button" label="7" (click)="empId = empId +'7'"></button>
+        <button pButton type="button" label="8" (click)="empId = empId +'8'"></button>
+        <button pButton type="button" label="9" (click)="empId = empId +'9'"></button>
+        <button pButton type="button" label="4" (click)="empId = empId +'4'"></button>
+        <button pButton type="button" label="5" (click)="empId = empId +'5'"></button>
+        <button pButton type="button" label="6" (click)="empId = empId +'6'"></button>
+        <button pButton type="button" label="1" (click)="empId = empId +'1'"></button>
+        <button pButton type="button" label="2" (click)="empId = empId +'2'"></button>
+        <button pButton type="button" label="3" (click)="empId = empId +'3'"></button>
+        <button pButton type="button" label="Enter" (click)="onSubmit()" [disabled]="!empId"></button>
+        <button pButton type="button" label="0" (click)="empId = empId +'0'"></button>
+      </div>
+    </div>
+    <br>
+    <h3 *ngIf="errorMessage" style="color: red;">
+      {{errorMessage}}
+    </h3>
+  </div>
+  <div *ngIf="isShown" class="loginAlignmentStyle">
+    <h5 style="color:#004990; font-style:italic ;">Select District</h5>
+    <p-listbox [options]="empList" [(ngModel)]="selectedDist" optionLabel="EMPDIST" optionValue="EMPDIST"
+      (onClick)="navigateToMain()"  [listStyle]="{'width':'15rem'}"></p-listbox>
+  </div>
+</div>

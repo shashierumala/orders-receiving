@@ -1,0 +1,51 @@
+.textStyle {
+    font-size: 24px;
+    font-weight: 600;
+};
+.contentStyle {
+display: contents;
+font-size: 24px;
+font-weight: 400;
+};
+.ContentViewStyle {
+border: 1px solid #004990; 
+border-radius:5px; 
+background-color: white; 
+margin:1rem auto;
+padding:0.5rem;
+box-shadow: 8px 8px 8px #888888;
+gap:10px;
+}
+
+.locationButtonStyle{
+    padding: 8px 24px 8px 4rem; 
+    width:4rem;
+}
+
+.display{
+    display: flex;
+    align-items: center;
+    grid-gap: 10px;
+    padding:1rem;
+    width:100%
+}
+
+.width{
+    width:100%
+}
+
+.grid-container {
+    display: flex;
+    grid-template-columns: auto auto auto auto;
+    gap: 10px;
+    background-color: #f5f5f5;
+    padding: 10px;
+  }
+  
+.gridView {
+    display:flex;
+    flex-wrap:wrap;
+    grid-gap:10px;
+    gap:10px;
+    font-size:30px;
+}

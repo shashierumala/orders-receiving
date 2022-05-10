@@ -1,0 +1,39 @@
+<p-table #dt1 styleClass="p-datatable-gridlines" [resizableColumns]="true" [paginator]="true" [rows]="10"
+  [showCurrentPageReport]="true" [columns]="cols" [value]="orders" responsiveLayout="scroll" [loading]="loading"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [rowsPerPageOptions]="[10,25,50,75,100,125,150,175,202]">
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <span class="p-input-icon-left ml-auto flex">
+        <i class="pi pi-search"></i>
+        <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')"
+          placeholder="Search keyword" />
+      </span>
+      <span class="flex" style="float: right;">
+        <p-button label="Refresh" icon="pi pi-refresh" [loading]="loading" (click)="refresh()"></p-button>
+      </span>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th pResizableColumn *ngFor="let col of columns">
+        <span pSortableColumn="{{col}}"> {{col | uppercase}}<p-sortIcon field="{{col}}"></p-sortIcon></span>
+        <p-columnFilter type="text" field="{{col}}" display="menu" placeholder="search by {{col}}"></p-columnFilter>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr>
+      <td *ngFor="let col of columns">
+        <span *ngIf="col !== 'TAG'">{{rowData[col]}}</span>
+        <button *ngIf="col === 'TAG'" pButton pRipple type="button" label="{{rowData[col]}}" class="p-button-secondary"
+          (click)="selectOrder(rowData)"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<!-- <div *ngFor="let order of ordersInfo">
+  <app-order [selectedOrder]="order"></app-order>
+</div>
+<p-paginator [rows]="10" [totalRecords]="orders.length" [rowsPerPageOptions]="[10,20,30]" (onPageChange)="changePagination($event)"></p-paginator> -->

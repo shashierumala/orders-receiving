@@ -1,0 +1,33 @@
+export interface Order{
+    DIST?:string;
+    desc?: string;
+    heat?: string;
+    ITEM: string;
+    itemrefc?: string;
+    l7008?: Boolean;
+    l7009?: Boolean;
+    l7014?: Boolean;
+    lbft?: Number;
+    ldfar?:  Boolean;
+    length?: Number;
+    lfar?: Boolean;
+    loc?: string;
+    locked?: Boolean;
+    ltaa?: Boolean;
+    maxl?: Number;
+    melt?: string;
+    mfg?: string;
+    millno?: string;
+    minl?: Number;
+    pcs?: Number;
+    recdate?: Date;
+    remote?: Number;
+    status?: Number;
+    TAG?: string;
+    tagcomment?: string;
+    tagcon?: string;
+    tagqty?: Number;
+    uom?: string;
+    vendor?: string;
+    width?: Number;
+}

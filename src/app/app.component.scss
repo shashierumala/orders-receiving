@@ -1,0 +1,16 @@
+.p-toolbar {
+    background-color: #ffffff;
+};
+
+:host ::ng-deep .p-dialog-title {
+    color: red;
+}
+
+:host ::ng-deep .p-dialog-header-close-icon{
+    color: red;
+}
+:host ::ng-deep .p-button-text{
+    color: red;
+}
+
+
