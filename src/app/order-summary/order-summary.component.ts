@@ -17,6 +17,8 @@ export class OrderSummaryComponent implements OnInit {
   errorHandler: any;
   errorMessage: any;
   loc!: string;
+  length!:string;
+  width!:string;
   order: Order[] = [];
   employee: EmployeeInfo[] = [];
   display: boolean = false;
@@ -76,5 +78,13 @@ export class OrderSummaryComponent implements OnInit {
         });
         this.display = true;
       });
+  }
+
+  updateLength(){
+
+  }
+
+  updateWidth(){
+
   }
 }

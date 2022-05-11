@@ -43,9 +43,26 @@ gap:10px;
   }
   
 .gridView {
-    display:flex;
     flex-wrap:wrap;
     grid-gap:10px;
     gap:10px;
     font-size:30px;
 }
+
+.gridChangeView {
+    flex-wrap:wrap;
+    grid-gap:10px;
+    gap:10px;
+    font-size:30px;
+    display: flex;
+}
+
+.textStyle {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .contentTextStyle {
+      font-size: 48px;
+      font-weight: bold;
+    }

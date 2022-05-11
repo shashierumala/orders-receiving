@@ -20,6 +20,8 @@ export interface Order{
     millno?: string;
     minl?: Number;
     pcs?: Number;
+    POLINE: Number;
+    PONO: Number;
     recdate?: Date;
     remote?: Number;
     status?: Number;

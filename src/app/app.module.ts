@@ -28,6 +28,8 @@ import {ToastModule} from 'primeng/toast';
 import {SplitterModule} from 'primeng/splitter';
 import { OrderComponent } from './order/order.component';
 import {PaginatorModule} from 'primeng/paginator';
+import {DataViewModule} from 'primeng/dataview';
+import {DividerModule} from 'primeng/divider';
 
 
 @NgModule({
@@ -52,8 +54,10 @@ import {PaginatorModule} from 'primeng/paginator';
     ButtonModule,
     ToolbarModule,
     DialogModule,
+    DividerModule,
     CardModule,
     InputNumberModule,
+    DataViewModule,
     ToastModule,
     SplitterModule,
     NgIdleModule.forRoot(),

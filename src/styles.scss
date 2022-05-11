@@ -11,3 +11,20 @@
 .p-button{
     background-color: #004990;
 }
+
+.product-list-item {
+    display:flex;
+    align-items: center;
+    grid-gap: 10px;
+    gap:10px;
+    padding: 1rem;
+    width:100%;
+}
+
+.product-list-item .product-list-detail {
+    flex:1 1;
+}
+
+.card{
+    flex-direction: inherit;
+}

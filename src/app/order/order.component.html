@@ -1,162 +1,67 @@
-
-<div class="ContentViewStyle">
-      <p-button lable="Select Order Summary"  (click)="selectOrder(selectedOrder)">Select Order Summary</p-button>
-    <div class="display">
-      <div>
-        <div class="display">
-          <div class="row" style="padding:12px 0px;">
-            <div class="width">
-              <span class="textStyle">ITEM:</span>
-              <span class="contentStyle">{{selectedOrder?.ITEM}}</span>
-            </div>
-            <div class="width">
-              <span class="textStyle">DIST:</span>
-              <span class="contentStyle">{{selectedOrder?.DIST}}</span>
-            </div>
-            <div class="width">
-              <span class="textStyle">LOC:</span>
-              <span class="contentStyle"> {{selectedOrder?.LOC}}</span>
-            </div>
-          </div>
-  
-          <!-- 2nd row starts  -->
-          <div class="row" style="padding:12px 0px;">
-            <div class="width">
-              <span class="textStyle">HEAT:</span>
-              <span class="contentStyle"> {{selectedOrder?.HEAT}}</span>
-            </div>
-            <div class="width">
-              <span class="textStyle">MILL_NO:</span>
-              <span class="contentStyle"> {{selectedOrder?.MILL_NO}}</span>
-            </div>
-            <div class="width">
-              <span class="textStyle">TAG_CON:</span>
-              <span class="contentStyle"> {{selectedOrder?.TAG_CON}}</span>
-            </div>
-          </div>
-        </div>
-        <!-- 2nd row ends  -->
-  
-        <!--3rd row starts-->
-        <div class="display">
-          <div class="row" style="padding:12px 0px;">
-            <div class="width">
-              <span class="textStyle">VENDOR:</span>
-              <span class="contentStyle"> {{selectedOrder?.VENDOR}}</span>
-            </div>
-            <div class="width">
-              <span class="textStyle">PCS:</span>
-              <span class="contentStyle"> {{selectedOrder?.PCS}}</span>
-            </div>
-            <div>
-              <span class="textStyle">TAG:</span>
-              <span class="contentStyle">{{selectedOrder?.TAG}}</span>
-            </div>
-          </div>
-  
-          <div class="row" style="padding:12px 0px;">
-            <div class="width">
-              <span class="textStyle">Locked:</span>
-              <span class="contentStyle"> {{selectedOrder?.LOCKED}}</span>
-            </div>
-            <div class="width">
-              <span class="textStyle">LTAA:</span>
-              <span class="contentStyle"> {{selectedOrder?.LTAA}}</span>
-            </div>
-            <div>
-              <span class="textStyle">melt:</span>
-              <span class="contentStyle">{{selectedOrder?.MELT}}</span>
-            </div>
-          </div>
-          </div>
-          <!--4th row starts-->
-          <div class="display">
-          <div class="row" style="padding:12px 0px;">
-            <div class="width">
-              <span class="textStyle">itemrefc:</span>
-              <span class="contentStyle"> {{selectedOrder?.ITEMREFC}}</span>
-            </div>
-            <div class="width">
-              <span class="textStyle">LDFAR:</span>
-              <span class="contentStyle"> {{selectedOrder?.LDFAR}}</span>
-            </div>
-            <div>
-              <span class="textStyle">LFAR:</span>
-              <span class="contentStyle">{{selectedOrder?.LFAR}}</span>
-            </div>
-          </div>
-  
-          <div class="row" style="padding:12px 0px;">
-            <div class="width">
-              <span class="textStyle">L7008:</span>
-              <span class="contentStyle"> {{selectedOrder?.L7008}}</span>
-            </div>
-            <div class="width">
-              <span class="textStyle">L7009:</span>
-              <span class="contentStyle"> {{selectedOrder?.L7009}}</span>
-            </div>
-            <div>
-              <span class="textStyle"> L7014:</span>
-              <span class="contentStyle">{{selectedOrder?.L7014}}</span>
-            </div>
-          </div>
-  
-          <div class="row" style="padding:12px 0px;">
-            <div class="width">
-              <span class="textStyle">MFG:</span>
-              <span class="contentStyle"> {{selectedOrder?.MFG}}</span>
-            </div>
-            <div class="width">
-              <span class="textStyle">RECDATE:</span>
-              <span class="contentStyle"> {{selectedOrder?.RECDATE}}</span>
-            </div>
-            <div>
-              <span class="textStyle">REMOTE:</span>
-              <span class="contentStyle">{{selectedOrder?.REMOTE}}</span>
-            </div>
-          </div>
-        </div>
-        <!--4th row ends-->
-        <!--5th row starts-->
-        <div class="row" style="padding:12px 0px;">
-          <div class="width">
-            <span class="textStyle">DESC:</span>
-            <span class="contentStyle"> {{selectedOrder?.DESC}}</span>
-          </div>
-          <div class="width">
-            <span class="textStyle">STATUS:</span>
-            <span class="contentStyle"> {{selectedOrder?.STATUS}}</span>
-          </div>
-          <div class="width">
-            <span class="textStyle">PO NUMBER:</span>
-            <span class="contentStyle"> {{selectedOrder?.PONO}}</span>
-          </div>
-          <div class="width">
-            <span class="textStyle">LB PER FT:</span>
-            <span class="contentStyle"> {{selectedOrder?.LB_FT}}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="row" style="padding:12px 0px;">
-        <div class="width">
-          <span class="textStyle">L:</span>
-          <span class="contentStyle"> {{selectedOrder?.LENGTH}}</span>
-        </div>
-        <div class="width">
-          <span class="textStyle">LMIN:</span>
-          <span class="contentStyle"> {{selectedOrder?.MIN_L}}</span>
-        </div>
-        <div class="width">
-          <span class="textStyle">LMAX:</span>
-          <span class="contentStyle"> {{selectedOrder?.MAX_L}}</span>
-        </div>
-        <div class="width">
-          <span class="textStyle">W:</span>
-          <span class="contentStyle"> {{selectedOrder?.WIDTH}}</span>
-        </div>
-      </div>
-    </div>
+<div style="justify-content:space-between; display:flex; align-items: center;">
+  <div class="width">
+    <span class="textStyle">PO {{selectedOrder?.PONO}}</span>
   </div>
-  
+  <div class="width">
+    <span class="textStyle">Line {{selectedOrder?.POLINE}}</span>
+  </div>
+  <div class="width">
+    <span class="textStyle">Item {{selectedOrder?.ITEM}}</span>
+  </div>
+  <div class="width">
+    <span class="textStyle">Tag {{selectedOrder?.TAG}}</span>
+  </div>
+  <div class="width">
+    <span style="float:right;">
+      <p-button lable="Select Order Summary" (click)="selectOrder(selectedOrder)">Select TAG</p-button>
+    </span>
+  </div>
+</div>
+<p-divider></p-divider>
+<div style="justify-content:space-between; display:flex; align-items: center;">
+  <div class="width">
+    <h2 style="font-weight: lighter;">HEAT {{selectedOrder?.HEAT}}</h2>
+  </div>
+  <div class="width">
+    <h2 style="font-weight: lighter;">MILL_NO {{selectedOrder?.MILL_NO}}</h2>
+  </div>
+</div>
+<p-divider></p-divider>
+<div style="text-align: center;">
+  <h2 style="color:white; background-color: black;">{{selectedOrder?.DESC}}</h2>
+</div>
+<p-divider></p-divider>
+<div style="justify-content:space-between; display:flex; align-items: center;">
+  <div class="width">
+    <span class="textStyle">Tag Qty {{selectedOrder?.TAG_QTY}} {{selectedOrder?.UOM}}</span>
+  </div>
+  <div class="width">
+    <span class="textStyle">Pieces {{selectedOrder?.PCS}}</span>
+  </div>
+  <div class="width">
+    <span class="textStyle">LENGTH: {{selectedOrder?.LENGTH}}</span>
+  </div>
+  <div class="width">
+    <span class="textStyle">WIDTH: {{selectedOrder?.WIDTH}}</span>
+  </div>
+</div>
+<p-divider></p-divider>
+<div class="width" style="text-align:left;">
+  <h3 style="font-weight: lighter;">VENDOR {{selectedOrder?.VENDOR}}</h3>
+</div>
+<p-divider></p-divider>
+<div class="width" style="text-align:left;">
+  <h3 style="font-weight: lighter;">{{selectedOrder?.TAG_COMMENT}}</h3>
+</div>
+<p-divider></p-divider>
+<div style="justify-content:space-between; display:flex; align-items: center;">
+  <div class="width" style="text-align:left;">
+    <span class="contentTextStyle">LOC {{selectedOrder?.LOC}}</span>
+  </div>
+  <div class="width">
+    <h3 style="font-weight: lighter;">REC_DATE {{selectedOrder?.REC_DATE}}</h3>
+  </div>
+  <div class="width" style="text-align:right;">
+    <span class="contentTextStyle">Status {{selectedOrder?.STATUS}}</span>
+  </div>
+</div>
