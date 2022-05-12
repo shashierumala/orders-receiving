@@ -30,6 +30,8 @@ import { OrderComponent } from './order/order.component';
 import {PaginatorModule} from 'primeng/paginator';
 import {DataViewModule} from 'primeng/dataview';
 import {DividerModule} from 'primeng/divider';
+import { LoadingComponent } from './loading/loading.component';
+import { LoadingInterceptor } from './_helpers/loading.interceptors';
 
 
 @NgModule({
@@ -39,7 +41,8 @@ import {DividerModule} from 'primeng/divider';
     OrderSummaryComponent,
     ErrorComponentComponent,
     LoginPageComponent,
-    OrderComponent
+    OrderComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +69,7 @@ import {DividerModule} from 'primeng/divider';
   ],
   bootstrap: [AppComponent],
   providers: [OrdersService, AuthService, TokenStorageService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }]
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, 
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi:true}]
 })
 export class AppModule { }

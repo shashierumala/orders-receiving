@@ -1,7 +1,7 @@
 <div class="card">
   <p-dataView #dv [value]="orders" [paginator]="true" [rows]="20" filterBy="PONO" layout="grid">
     <ng-template pTemplate="header">
-      <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+      <div class="p-d-flex p-flex-md-row p-jc-md-between">
         <button pButton type ="button" label="refresh" [loading]="loading" icon="pi pi-refresh" (click)="refresh()" ></button>
         <span class="p-input-icon-left p-mb-2 p-mb-md-0">
           <i class="pi pi-search"></i>

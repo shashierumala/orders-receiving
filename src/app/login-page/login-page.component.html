@@ -4,7 +4,7 @@
     <p-progressSpinner *ngIf="isLoading"></p-progressSpinner>
     <div>
       <div class="p-float-label" style="padding:24px">
-        <div style="padding-right:8px"><input id="float-input" type="text" [(ngModel)]="empId" pInputText></div>
+        <div style="padding-right:8px"><input id="float-input" type="password" [(ngModel)]="empId" pInputText></div>
         <button pButton type="button" label="clear" class="buttonStyle" (click)="clear()"></button>
       </div>
       <div class="grid-container">
@@ -17,8 +17,8 @@
         <button pButton type="button" label="1" (click)="empId = empId +'1'"></button>
         <button pButton type="button" label="2" (click)="empId = empId +'2'"></button>
         <button pButton type="button" label="3" (click)="empId = empId +'3'"></button>
-        <button pButton type="button" label="Enter" (click)="onSubmit()" [disabled]="!empId"></button>
         <button pButton type="button" label="0" (click)="empId = empId +'0'"></button>
+         <button pButton type="button" icon="pi pi-arrow-right" (click)="onSubmit()" [disabled]="!empId"></button>
       </div>
     </div>
     <br>
@@ -27,8 +27,8 @@
     </h3>
   </div>
   <div *ngIf="isShown" class="loginAlignmentStyle">
-    <h5 style="color:#004990; font-style:italic ;">Select District</h5>
+    <h5 style="color:#004990; font-style:italic; text-align: center;">Select District</h5>
     <p-listbox [options]="empList" [(ngModel)]="selectedDist" optionLabel="EMPDIST" optionValue="EMPDIST"
-      (onClick)="navigateToMain()"  [listStyle]="{'width':'15rem'}"></p-listbox>
+      (onClick)="navigateToMain()" [listStyle]="{'width':'15rem'}"></p-listbox>
   </div>
 </div>

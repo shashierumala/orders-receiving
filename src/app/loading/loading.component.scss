@@ -1,0 +1,94 @@
+.loading-container {
+    position: fixed;
+    z-index: 100000;
+    width: 100%;
+    height: 100%;
+    background-color:#ffffff;
+    color: #004990;
+    top: 0;
+    left: 0;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @keyframes moveInTop {
+    0% {
+      opacity: 0;
+      transform: translateY(-1rem);
+    }
+  
+    80% {
+      transform: translateY(2);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes moveInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-10rem);
+    }
+  
+    80% {
+      transform: translateX(1rem);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: translate(0);
+    }
+  }
+  
+  .loading {
+    font-size: 8rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-blue-light);
+    span {
+      display: inline-block;
+      margin: 0 -0.05em;
+    }
+  }
+  
+  /* code #1 */
+  .loading-tw {
+    span {
+      animation: loading01 1.4s infinite alternate;
+      @for $i from 0 through 6 {
+        &:nth-child(#{$i + 1}) {
+          animation-delay: #{$i * 0.1}s;
+        }
+      }
+    }
+  }
+  
+  @keyframes loading01 {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  @keyframes clickEffect {
+    0% {
+      opacity: 1;
+    }
+  
+    100% {
+      opacity: 0.2;
+    }
+  }
+  
+  @keyframes rotateAnimation {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
