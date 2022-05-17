@@ -101,8 +101,7 @@ console.log(event);
 
   showSearch(){
     this.ref = this.dialogService.open(SearchModalComponent, {
-      header: 'Search With PO Number',
-      width: '75%',
+      header: 'Search PO Number',
       contentStyle: { "overflow": "auto"},
       baseZIndex: 10000
   });
