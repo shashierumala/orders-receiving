@@ -17,8 +17,8 @@ export class OrderSummaryComponent implements OnInit {
   errorHandler: any;
   errorMessage: any;
   loc!: string;
-  length!:string;
-  width!:string;
+  length!: any;
+  width!: any;
   order: Order[] = [];
   employee: EmployeeInfo[] = [];
   display: boolean = false;
@@ -80,11 +80,43 @@ export class OrderSummaryComponent implements OnInit {
       });
   }
 
-  updateLength(){
-
+  updateLength() {
+    if (this.length) {
+      this.orderService.sendLength(this.length).subscribe(
+        (data) => {
+          console.log(data);
+          this.length = '';
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Length changed successfully',
+          });
+        },
+        (err: HttpErrorResponse): void => {
+          this.errorMessage = err.error.message;
+          this.errorHandler.handleError(err);
+        }
+      );
+    }
   }
 
-  updateWidth(){
-
+  updateWidth() {
+    if (this.width) {
+      this.orderService.sendWidth(this.width).subscribe(
+        (data) => {
+          console.log(data);
+          this.width = '';
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'width changed successfully',
+          });
+        },
+        (err: HttpErrorResponse): void => {
+          this.errorMessage = err.error.message;
+          this.errorHandler.handleError(err);
+        }
+      );
+    }
   }
 }

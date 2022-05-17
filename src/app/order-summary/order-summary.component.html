@@ -37,7 +37,7 @@
           </div>
           <p-divider></p-divider>
           <div style="text-align: center;">
-            <h2 style="color:white; background-color: black;">{{selectedOrder?.DESC}}</h2>
+            <h2 style="color:white; background-color: #004990;">{{selectedOrder?.DESC}}</h2>
           </div>
           <p-divider></p-divider>
           <div style="justify-content:space-between; display:flex; align-items: center;">
@@ -80,54 +80,57 @@
   </div>
 </p-card>
 <p-card>
-<div class="gridChangeView">
-  <div class="ContentViewStyle">
-    <h5 style="padding:8px">Racking Location</h5>
-    <div style="display: flex;">
-      <div>
-        <span class="p-float-label">
-          <input id="float-input" type="text" [(ngModel)]="loc" pInputText>
-        </span>
-        <p-button type="button" lable="submit" (click)="onUpdateClick()" [disabled]="!loc" class="locationButtonStyle">
-          submit</p-button>
-        <br>
-        <h3 *ngIf="errorMessage" style="color: red;">
-          {{errorMessage}}
-        </h3>
+  <div class="gridChangeView">
+    <div class="ContentViewStyle">
+      <h5 style="padding:8px">Racking Location</h5>
+      <div style="display: flex;">
+        <div>
+          <span class="p-float-label">
+            <input id="float-input" type="text" [(ngModel)]="loc" pInputText>
+          </span>
+          <p-button type="button" lable="submit" (click)="onUpdateClick()" [disabled]="!loc"
+            class="locationButtonStyle">
+            submit</p-button>
+          <br>
+          <h3 *ngIf="errorMessage" style="color: red;">
+            {{errorMessage}}
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class="ContentViewStyle">
+      <h5 style="padding:8px">Change Length</h5>
+      <div style="display: flex;">
+        <div>
+          <span class="p-float-label">
+            <input id="float-input" type="text" [(ngModel)]="length" pInputText>
+          </span>
+          <p-button type="button" lable="submit" (click)="updateLength()" [disabled]="!length"
+            class="locationButtonStyle">
+            submit</p-button>
+          <br>
+          <h3 *ngIf="errorMessage" style="color: red;">
+            {{errorMessage}}
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class="ContentViewStyle">
+      <h5 style="padding:8px">Change Width</h5>
+      <div style="display: flex;">
+        <div>
+          <span class="p-float-label">
+            <input id="float-input" type="text" [(ngModel)]="width" pInputText>
+          </span>
+          <p-button type="button" lable="submit" (click)="updateWidth()" [disabled]="!width"
+            class="locationButtonStyle">
+            submit</p-button>
+          <br>
+          <h3 *ngIf="errorMessage" style="color: red;">
+            {{errorMessage}}
+          </h3>
+        </div>
       </div>
     </div>
   </div>
-  <div class="ContentViewStyle">
-    <h5 style="padding:8px">Change Length</h5>
-    <div style="display: flex;">
-      <div>
-        <span class="p-float-label">
-          <input id="float-input" type="text" [(ngModel)]="length" pInputText>
-        </span>
-        <p-button type="button" lable="submit" (click)="updateLength()" [disabled]="!length" class="locationButtonStyle">
-          submit</p-button>
-        <br>
-        <h3 *ngIf="errorMessage" style="color: red;">
-          {{errorMessage}}
-        </h3>
-      </div>
-    </div>
-  </div>
-  <div class="ContentViewStyle">
-    <h5 style="padding:8px">Change Width</h5>
-    <div style="display: flex;">
-      <div>
-        <span class="p-float-label">
-          <input id="float-input" type="text" [(ngModel)]="width" pInputText>
-        </span>
-        <p-button type="button" lable="submit" (click)="updateWidth()" [disabled]="!width" class="locationButtonStyle">
-          submit</p-button>
-        <br>
-        <h3 *ngIf="errorMessage" style="color: red;">
-          {{errorMessage}}
-        </h3>
-      </div>
-    </div>
-  </div>
-</div>
 </p-card>

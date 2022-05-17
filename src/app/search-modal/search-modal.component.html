@@ -1,28 +1,29 @@
 <div style="display: flex;">
-    <div style="padding:48px">
-         <div>
-        <div class="p-float-label" style="padding:24px">
-          <div style="padding-right:8px"><input id="float-input" type="text" [(ngModel)]="poNumber" pInputText></div>
-          <button pButton type="button" label="clear" class="buttonStyle" (click)="clear()"></button>
-        </div>
-        <div class="grid-container">
-          <button pButton type="button" label="7" (click)="poNumber = poNumber +'7'"></button>
-          <button pButton type="button" label="8" (click)="poNumber = poNumber +'8'"></button>
-          <button pButton type="button" label="9" (click)="poNumber = poNumber +'9'"></button>
-          <button pButton type="button" label="4" (click)="poNumber = poNumber +'4'"></button>
-          <button pButton type="button" label="5" (click)="poNumber = poNumber +'5'"></button>
-          <button pButton type="button" label="6" (click)="poNumber = poNumber +'6'"></button>
-          <button pButton type="button" label="1" (click)="poNumber = poNumber +'1'"></button>
-          <button pButton type="button" label="2" (click)="poNumber = poNumber +'2'"></button>
-          <button pButton type="button" label="3" (click)="poNumber = poNumber +'3'"></button>
-          <button pButton type="button" label="0" (click)="poNumber = poNumber +'0'"></button>
-           <button pButton type="button" icon="pi pi-arrow-right" (click)="onSubmit()" [disabled]="!poNumber"></button>
-        </div>
+  <div style="padding:48px">
+    <div>
+      <div class="p-float-label" style="padding:24px">
+        <div style="padding-right:8px"><input id="float-input" type="text" [(ngModel)]="poNumber" pInputText></div>
+        <button pButton type="button" label="clear" class="buttonStyle" (click)="clear()"></button>
       </div>
-      <br>
-      <h3 *ngIf="errorMessage" style="color: red;">
-        {{errorMessage}}
-      </h3>
+      <div class="grid-container">
+        <button pButton type="button" label="7" (click)="poNumber = poNumber +'7'"></button>
+        <button pButton type="button" label="8" (click)="poNumber = poNumber +'8'"></button>
+        <button pButton type="button" label="9" (click)="poNumber = poNumber +'9'"></button>
+        <button pButton type="button" label="4" (click)="poNumber = poNumber +'4'"></button>
+        <button pButton type="button" label="5" (click)="poNumber = poNumber +'5'"></button>
+        <button pButton type="button" label="6" (click)="poNumber = poNumber +'6'"></button>
+        <button pButton type="button" label="1" (click)="poNumber = poNumber +'1'"></button>
+        <button pButton type="button" label="2" (click)="poNumber = poNumber +'2'"></button>
+        <button pButton type="button" label="3" (click)="poNumber = poNumber +'3'"></button>
+        <button pButton type="button" label="0" (click)="poNumber = poNumber +'0'"></button>
+        <button pButton type="button" icon="pi pi-arrow-right" (click)="onSubmit()" [disabled]="!poNumber"></button>
+        <!-- <button pButton type="button" [class.searched]="pono === searchedPO" icon="pi pi-arrow-right" (click)="onSubmit(pono)" [disabled]="!poNumber"></button> -->
+      </div>
     </div>
-  
+    <br>
+    <h3 *ngIf="errorMessage" style="color: red;">
+      {{errorMessage}}
+    </h3>
   </div>
+
+</div>

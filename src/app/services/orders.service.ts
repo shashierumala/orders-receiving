@@ -13,6 +13,9 @@ export class OrdersService {
   receiveUrl: string = '/receiving?dist=';
   printUrl: string = '/receiving/pit';
   locUrl: string = '/receiving/change/loc';
+  widUrl: string = '/receiving/change/wid';
+  lenUrl: string = '/receiving/change/len';
+  stsUrl: string = '/receiving/change/sts';
   selectedOrder!: Order;
   selectedEmployee!: EmployeeInfo;
   selectedDist!: string;
@@ -52,6 +55,54 @@ export class OrdersService {
       add_user,
     };
     return this.http.post(`${this.hostUrl}${this.locUrl}`, {
+      ...requestObject,
+    });
+  }
+
+  sendLength(len: Number) {
+    const dist = `${this.selectedEmployee.EMPDIST}`;
+    const add_user = `${this.selectedEmployee.EMPID}`;
+    const requestObject = {
+      systemName: this.selectedEmployee.EMPSystemName,
+      dist,
+      item: this.selectedOrder.ITEM,
+      tag: this.selectedOrder.TAG?.trim(),
+      new_length: len,
+      add_user,
+    };
+    return this.http.post(`${this.hostUrl}${this.lenUrl}`, {
+      ...requestObject,
+    });
+  }
+
+  sendWidth(wid: Number) {
+    const dist = `${this.selectedEmployee.EMPDIST}`;
+    const add_user = `${this.selectedEmployee.EMPID}`;
+    const requestObject = {
+      systemName: this.selectedEmployee.EMPSystemName,
+      dist,
+      item: this.selectedOrder.ITEM,
+      tag: this.selectedOrder.TAG?.trim(),
+      new_width: wid,
+      add_user,
+    };
+    return this.http.post(`${this.hostUrl}${this.widUrl}`, {
+      ...requestObject,
+    });
+  }
+
+  sendStatus(sts: string) {
+    const dist = `${this.selectedEmployee.EMPDIST}`;
+    const add_user = `${this.selectedEmployee.EMPID}`;
+    const requestObject = {
+      systemName: this.selectedEmployee.EMPSystemName,
+      dist,
+      item: this.selectedOrder.ITEM,
+      tag: this.selectedOrder.TAG?.trim(),
+      new_status: sts,
+      add_user,
+    };
+    return this.http.post(`${this.hostUrl}${this.stsUrl}`, {
       ...requestObject,
     });
   }

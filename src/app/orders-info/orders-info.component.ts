@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
 import { OrdersService } from '../services/orders.service';
 import { Order } from '../orders';
 import { Table } from 'primeng/table';
@@ -29,9 +29,10 @@ export class OrdersInfoComponent implements OnInit {
 
   @ViewChild('dv') table!: Table;
   @ViewChild('filter') filter!: ElementRef;
+  //@Input() pono?: Order;
 
   ref!: DynamicDialogRef;
-selectedPo = '';
+  selectedPo = '';
   constructor(
     private router: Router,
     private ordersService: OrdersService,
@@ -47,20 +48,17 @@ selectedPo = '';
       this.selectedDist = JSON.parse(orders);
     }
     this.getOrdersInfo();
-  this.ordersService.searchPo.subscribe(val=>{
-    this.selectedPo = val;
-    if(val !== ''){
-      this.table.filter(val ,'contains', 'contains');
-      this.ref.close();
-    }
-  
-   
-
-  })
+    this.ordersService.searchPo.subscribe((val) => {
+      this.selectedPo = val;
+      if (val !== '') {
+        this.table.filter(val, 'contains', 'contains');
+        this.ref.close();
+      }
+    });
   }
 
   refresh() {
-    this.table.filter('' ,'contains', 'contains');
+    this.table.filter('', 'contains', 'contains');
     this.loading = true;
     this.getOrdersInfo();
   }
@@ -68,7 +66,10 @@ selectedPo = '';
     this.ordersService.getOrders().subscribe(
       (res) => {
         this.orders = res.data;
-        this.ordersInfo = this.orders.slice(this.paginationIndex, this.paginationIndex + this.noRows);
+        this.ordersInfo = this.orders.slice(
+          this.paginationIndex,
+          this.paginationIndex + this.noRows
+        );
         if (this.orders.length > 0) {
           const col = Object.keys(this.orders[0]);
           this.cols = col;
@@ -81,10 +82,9 @@ selectedPo = '';
       }
     );
   }
-  changePagination(event: any){
-    
+  changePagination(event: any) {
     this.ordersInfo = this.orders.slice(event.first, event.first + event.rows);
-console.log(event);
+    console.log(event);
   }
   selectOrder(data: any) {
     this.ordersService.selectedOrder = data;
@@ -99,18 +99,18 @@ console.log(event);
     this.router.navigate(['/login']);
   }
 
-  showSearch(){
+  showSearch() {
     this.ref = this.dialogService.open(SearchModalComponent, {
       header: 'Search PO Number',
-      contentStyle: { "overflow": "auto"},
-      baseZIndex: 10000
-  });
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+    });
 
-  this.ref.onClose.subscribe((product: any) =>{
-    if(this.selectedPo === ''){
-      this.table.filter('' ,'contains', 'contains');
-    }
-  });
+    this.ref.onClose.subscribe((product: any) => {
+      if (this.selectedPo === '') {
+        this.table.filter('', 'contains', 'contains');
+      }
+    });
   }
 
   next() {
