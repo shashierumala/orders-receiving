@@ -5,6 +5,8 @@ import { Table } from 'primeng/table';
 import { Router } from '@angular/router';
 import { ErrorHandlerService } from '../services/error-handler.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { SearchModalComponent } from '../search-modal/search-modal.component';
 
 @Component({
   selector: 'app-orders-info',
@@ -25,13 +27,16 @@ export class OrdersInfoComponent implements OnInit {
   errorMessage: string = '';
   selectedDist!: string;
 
-  @ViewChild('dt') table!: Table;
+  @ViewChild('dv') table!: Table;
   @ViewChild('filter') filter!: ElementRef;
 
+  ref!: DynamicDialogRef;
+selectedPo = '';
   constructor(
     private router: Router,
     private ordersService: OrdersService,
-    private errorHandler: ErrorHandlerService
+    private errorHandler: ErrorHandlerService,
+    private dialogService: DialogService
   ) {}
 
   ngOnInit(): void {
@@ -42,9 +47,20 @@ export class OrdersInfoComponent implements OnInit {
       this.selectedDist = JSON.parse(orders);
     }
     this.getOrdersInfo();
+  this.ordersService.searchPo.subscribe(val=>{
+    this.selectedPo = val;
+    if(val !== ''){
+      this.table.filter(val ,'contains', 'contains');
+      this.ref.close();
+    }
+  
+   
+
+  })
   }
 
   refresh() {
+    this.table.filter('' ,'contains', 'contains');
     this.loading = true;
     this.getOrdersInfo();
   }
@@ -81,6 +97,21 @@ console.log(event);
   logout() {
     localStorage.removeItem('EmployeeID');
     this.router.navigate(['/login']);
+  }
+
+  showSearch(){
+    this.ref = this.dialogService.open(SearchModalComponent, {
+      header: 'Search With PO Number',
+      width: '75%',
+      contentStyle: { "overflow": "auto"},
+      baseZIndex: 10000
+  });
+
+  this.ref.onClose.subscribe((product: any) =>{
+    if(this.selectedPo === ''){
+      this.table.filter('' ,'contains', 'contains');
+    }
+  });
   }
 
   next() {

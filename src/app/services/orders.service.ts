@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Order } from '../orders';
 import { EmployeeInfo } from '../employee';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,7 @@ export class OrdersService {
   selectedEmployee!: EmployeeInfo;
   selectedDist!: string;
   employee!: EmployeeInfo;
+  searchPo = new BehaviorSubject<string>('');
 
   constructor(private http: HttpClient) {}
 

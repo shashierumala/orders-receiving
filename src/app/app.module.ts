@@ -32,6 +32,8 @@ import {DataViewModule} from 'primeng/dataview';
 import {DividerModule} from 'primeng/divider';
 import { LoadingComponent } from './loading/loading.component';
 import { LoadingInterceptor } from './_helpers/loading.interceptors';
+import {DialogService, DynamicDialogModule} from 'primeng/dynamicdialog';
+import { SearchModalComponent } from './search-modal/search-modal.component';
 
 
 @NgModule({
@@ -42,7 +44,8 @@ import { LoadingInterceptor } from './_helpers/loading.interceptors';
     ErrorComponentComponent,
     LoginPageComponent,
     OrderComponent,
-    LoadingComponent
+    LoadingComponent,
+    SearchModalComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ import { LoadingInterceptor } from './_helpers/loading.interceptors';
     ListboxModule,
     PaginatorModule,
     HttpClientModule,
+    DynamicDialogModule,
     FormsModule,
     TableModule,
     FieldsetModule,
@@ -68,7 +72,7 @@ import { LoadingInterceptor } from './_helpers/loading.interceptors';
     ProgressSpinnerModule
   ],
   bootstrap: [AppComponent],
-  providers: [OrdersService, AuthService, TokenStorageService,
+  providers: [DialogService, OrdersService, AuthService, TokenStorageService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, 
     {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi:true}]
 })
