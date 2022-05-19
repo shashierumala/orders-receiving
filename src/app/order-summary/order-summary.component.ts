@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { OrdersService } from '../services/orders.service';
 import { Order } from '../orders';
 import { EmployeeInfo } from '../employee';
@@ -19,25 +19,35 @@ export class OrderSummaryComponent implements OnInit {
   loc!: string;
   length!: any;
   width!: any;
+  status!:string;
   order: Order[] = [];
   employee: EmployeeInfo[] = [];
   display: boolean = false;
+  dist!: string;
+  item!: string;
+  tag!: string;
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private orderService: OrdersService,
     private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
-    if (this.selectedOrder) {
-      this.selectedOrder = this.orderService.selectedOrder;
-    } else {
-      const order: any = localStorage.getItem('order-summary');
-      this.selectedOrder = JSON.parse(order);
-    }
+    this.route.queryParams.subscribe((res: Params) => {
+     this.dist = res['dist'], this.item = res['item'], this.tag=res['tag'];
+    this.loadOrder();
+    })
   }
 
+  loadOrder(){
+    this.orderService.selectOrder(this.dist, this.item, this.tag).subscribe(res => {
+      console.log(res.data)
+      this.selectedOrder = res.data[0];
+      this.orderService.selectedOrder = res.data[0]
+    });
+  }
   back() {
     this.router.navigate(['order-info']);
   }
@@ -46,6 +56,7 @@ export class OrderSummaryComponent implements OnInit {
     if (this.loc) {
       this.orderService.sendLocation(this.loc).subscribe(
         (data) => {
+          this.loadOrder();
           console.log(data);
           this.loc = '';
           this.messageService.add({
@@ -85,6 +96,7 @@ export class OrderSummaryComponent implements OnInit {
       this.orderService.sendLength(this.length).subscribe(
         (data) => {
           console.log(data);
+          this.loadOrder();
           this.length = '';
           this.messageService.add({
             severity: 'success',
@@ -104,12 +116,34 @@ export class OrderSummaryComponent implements OnInit {
     if (this.width) {
       this.orderService.sendWidth(this.width).subscribe(
         (data) => {
+          this.loadOrder();
           console.log(data);
           this.width = '';
           this.messageService.add({
             severity: 'success',
             summary: 'Success',
             detail: 'width changed successfully',
+          });
+        },
+        (err: HttpErrorResponse): void => {
+          this.errorMessage = err.error.message;
+          this.errorHandler.handleError(err);
+        }
+      );
+    }
+  }
+
+  updateStatus() {
+    if (this.status) {
+      this.orderService.sendStatus(this.status).subscribe(
+        (data) => {
+          console.log(data);
+          this.loadOrder();
+          this.status = '';
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Status changed successfully',
           });
         },
         (err: HttpErrorResponse): void => {

@@ -4,14 +4,14 @@
       <div class="p-d-flex p-flex-md-row p-jc-md-between">
         <button pButton type="button" label="refresh" [loading]="loading" icon="pi pi-refresh"
           (click)="refresh()"></button>
-        <span class="p-input-icon-left p-mb-2 p-mb-md-0">
+          <h4 style ="display:flex; padding-right:1rem" *ngIf="selectedPo !== ''">Search Results for PO Number:  <h3 style ="padding-left:1rem;font-weight:bold;"> {{selectedPo}}</h3></h4>
+        <span class="p-input-icon-left p-mb-2 p-mb-md-0" >
           <button pButton type="button" label="Enter PO Number" icon="pi pi-addition" (click)="showSearch()"> </button>
-          <!-- <i class="pi pi-search"></i>
-          <input type="search" pInputText placeholder="Search by PO NUMBER" (input)="dv.filter($event.target.value, 'contains')"> -->
         </span>
-        <!-- <div *ngIf=pono>
-        <h4> search results for {{pono.PONO}}</h4>
-        </div> -->
+        <!-- <span class="p-input-icon-left p-mb-2 p-mb-md-0" >
+          <i class="pi pi-search"></i>
+          <input type="search" pInputText placeholder="Search by TAG" (input)="dv.filter($event.target.value, 'contains')">
+        </span> -->
       </div>
     </ng-template>
     <ng-template let-order pTemplate="gridItem">

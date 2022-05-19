@@ -19,7 +19,6 @@ export class SearchModalComponent implements OnInit {
 
   onSubmit() {
     this.orderService.searchPo.next(this.poNumber);
-    //this.searchedPO = pono;
   }
   clear() {
     this.poNumber = '';

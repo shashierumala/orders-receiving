@@ -12,6 +12,7 @@ export class OrdersService {
   hostUrl: string = environment.url;
   receiveUrl: string = '/receiving?dist=';
   printUrl: string = '/receiving/pit';
+  selectUrl: string = 'receiving?';
   locUrl: string = '/receiving/change/loc';
   widUrl: string = '/receiving/change/wid';
   lenUrl: string = '/receiving/change/len';
@@ -35,6 +36,15 @@ export class OrdersService {
     return this.http.get<any>(`${this.hostUrl}${this.receiveUrl}${dist}`);
   }
 
+  selectOrder(dist: string, item: string, tag: string) {
+    console.log('this should work')
+    let params = new HttpParams();
+    params = params.append('dist', dist);
+    params = params.append('item', item);
+    params = params.append('tag', tag);
+    return this.http.get<any>(`${this.hostUrl}${this.selectUrl}`, { params });
+  }
+
   printTag(dist: string, tag: string, item: string) {
     let params = new HttpParams();
     params = params.append('item', item);
@@ -44,6 +54,7 @@ export class OrdersService {
   }
 
   sendLocation(loc: string) {
+    console.log('this works')
     const dist = `${this.selectedEmployee.EMPDIST}`;
     const add_user = `${this.selectedEmployee.EMPID}`;
     const requestObject = {

@@ -29,7 +29,6 @@ export class OrdersInfoComponent implements OnInit {
 
   @ViewChild('dv') table!: Table;
   @ViewChild('filter') filter!: ElementRef;
-  //@Input() pono?: Order;
 
   ref!: DynamicDialogRef;
   selectedPo = '';
@@ -49,16 +48,16 @@ export class OrdersInfoComponent implements OnInit {
     }
     this.getOrdersInfo();
     this.ordersService.searchPo.subscribe((val) => {
-      this.selectedPo = val;
       if (val !== '') {
-        this.table.filter(val, 'contains', 'contains');
+        this.selectedPo = val;
+        this.table.filter(val, 'equals', 'equals');
         this.ref.close();
       }
     });
   }
 
   refresh() {
-    this.table.filter('', 'contains', 'contains');
+    this.selectedPo = '';
     this.loading = true;
     this.getOrdersInfo();
   }
@@ -73,6 +72,7 @@ export class OrdersInfoComponent implements OnInit {
         if (this.orders.length > 0) {
           const col = Object.keys(this.orders[0]);
           this.cols = col;
+          this.table.filter('', 'equals', 'equals');
           this.loading = false;
         }
       },
@@ -86,13 +86,16 @@ export class OrdersInfoComponent implements OnInit {
     this.ordersInfo = this.orders.slice(event.first, event.first + event.rows);
     console.log(event);
   }
-  selectOrder(data: any) {
-    this.ordersService.selectedOrder = data;
-    localStorage.setItem('order-summary', JSON.stringify(data));
-    this.router.navigate(['order-summary/api/receiving'], {
-      queryParams: { dist: data.DIST, item: data.ITEM, tag: data.TAG },
-    });
-  }
+  // selectOrder(data: any) {
+  //   this.ordersService.selectOrder(
+  //     this.selectedOrder.DIST,
+  //     this.selectedOrder.TAG,
+  //     this.selectedOrder.ITEM
+  //   );
+  //   this.router.navigate(['order-summary/api/receiving'], {
+  //     queryParams: { dist: data.DIST, item: data.ITEM, tag: data.TAG },
+  //   });
+  // }
 
   logout() {
     localStorage.removeItem('EmployeeID');
@@ -106,11 +109,11 @@ export class OrdersInfoComponent implements OnInit {
       baseZIndex: 10000,
     });
 
-    this.ref.onClose.subscribe((product: any) => {
-      if (this.selectedPo === '') {
-        this.table.filter('', 'contains', 'contains');
-      }
-    });
+    // this.ref.onClose.subscribe((product: any) => {
+    //   if (this.selectedPo === '') {
+    //     this.table.filter('', 'contains', 'contains');
+    //   }
+    // });
   }
 
   next() {

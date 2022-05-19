@@ -14,9 +14,7 @@ export class OrderComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  selectOrder(data: any) {
-    this.ordersService.selectedOrder = data;
-    localStorage.setItem('order-summary', JSON.stringify(data));
+  selectOrder(data:any) {
     this.router.navigate(['order-summary/api/receiving'], {
       queryParams: { dist: data.DIST, item: data.ITEM, tag: data.TAG },
     });
