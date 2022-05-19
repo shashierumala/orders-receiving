@@ -21,7 +21,7 @@ export class OrdersService {
   selectedEmployee!: EmployeeInfo;
   selectedDist!: string;
   employee!: EmployeeInfo;
-  searchPo = new BehaviorSubject<string>('');
+  searchValue = new BehaviorSubject<string>('');
 
   constructor(private http: HttpClient) {}
 

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ErrorComponentComponent } from './error-component/error-component.component';
+import { ErrorComponentComponent } from './reusable/error-component/error-component.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { OrdersInfoComponent } from './orders-info/orders-info.component';

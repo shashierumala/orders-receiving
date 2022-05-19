@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Order } from '../orders';
-import { OrdersService } from '../services/orders.service';
+import { OrdersService } from '../../services/orders.service';
 
 @Component({
   selector: 'app-search-modal',
@@ -8,19 +7,18 @@ import { OrdersService } from '../services/orders.service';
   styleUrls: ['./search-modal.component.scss'],
 })
 export class SearchModalComponent implements OnInit {
-  poNumber = '';
-  searchedPO!: Order;
+  value = '';
   errorMessage!: string;
   constructor(private orderService: OrdersService) {}
 
   ngOnInit(): void {
-    this.orderService.searchPo.next('');
+    this.orderService.searchValue.next('');
   }
 
   onSubmit() {
-    this.orderService.searchPo.next(this.poNumber);
+    this.orderService.searchValue.next(this.value);
   }
   clear() {
-    this.poNumber = '';
+    this.value = '';
   }
 }

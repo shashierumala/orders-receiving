@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { ErrorHandlerService } from '../services/error-handler.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { SearchModalComponent } from '../search-modal/search-modal.component';
+import { SearchModalComponent } from '../reusable/search-modal/search-modal.component';
 
 @Component({
   selector: 'app-orders-info',
@@ -47,7 +47,7 @@ export class OrdersInfoComponent implements OnInit {
       this.selectedDist = JSON.parse(orders);
     }
     this.getOrdersInfo();
-    this.ordersService.searchPo.subscribe((val) => {
+    this.ordersService.searchValue.subscribe((val) => {
       if (val !== '') {
         this.selectedPo = val;
         this.table.filter(val, 'equals', 'equals');
@@ -75,6 +75,7 @@ export class OrdersInfoComponent implements OnInit {
           this.table.filter('', 'equals', 'equals');
           this.loading = false;
         }
+        this.selectedPo = '';
       },
       (err: HttpErrorResponse): void => {
         this.errorHandler.handleError(err);
@@ -86,16 +87,6 @@ export class OrdersInfoComponent implements OnInit {
     this.ordersInfo = this.orders.slice(event.first, event.first + event.rows);
     console.log(event);
   }
-  // selectOrder(data: any) {
-  //   this.ordersService.selectOrder(
-  //     this.selectedOrder.DIST,
-  //     this.selectedOrder.TAG,
-  //     this.selectedOrder.ITEM
-  //   );
-  //   this.router.navigate(['order-summary/api/receiving'], {
-  //     queryParams: { dist: data.DIST, item: data.ITEM, tag: data.TAG },
-  //   });
-  // }
 
   logout() {
     localStorage.removeItem('EmployeeID');
@@ -108,12 +99,6 @@ export class OrdersInfoComponent implements OnInit {
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
     });
-
-    // this.ref.onClose.subscribe((product: any) => {
-    //   if (this.selectedPo === '') {
-    //     this.table.filter('', 'contains', 'contains');
-    //   }
-    // });
   }
 
   next() {

@@ -14,7 +14,7 @@ import {FieldsetModule} from "primeng/fieldset";
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {ToolbarModule} from 'primeng/toolbar';
-import { ErrorComponentComponent } from './error-component/error-component.component';
+import { ErrorComponentComponent } from './reusable/error-component/error-component.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AuthService } from './services/auth.service';
 import { TokenStorageService } from './services/token-storage.service';
@@ -33,7 +33,7 @@ import {DividerModule} from 'primeng/divider';
 import { LoadingComponent } from './loading/loading.component';
 import { LoadingInterceptor } from './_helpers/loading.interceptors';
 import {DialogService, DynamicDialogModule} from 'primeng/dynamicdialog';
-import { SearchModalComponent } from './search-modal/search-modal.component';
+import { SearchModalComponent } from './reusable/search-modal/search-modal.component';
 
 
 @NgModule({
