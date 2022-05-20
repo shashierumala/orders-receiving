@@ -134,23 +134,23 @@ export class OrderSummaryComponent implements OnInit {
   }
 
   updateStatus() {
-    if (this.status) {
-      this.orderService.sendStatus(this.status).subscribe(
+    if ((!this.selectedOrder.LOC.startsWith('IN')) && +this.selectedOrder.STATUS === 2 ) {
+      this.orderService.sendStatus('1').subscribe(
         (data) => {
           console.log(data);
-          this.loadOrder();
-          this.status = '';
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: 'Status changed successfully',
-          });
+        this.router.navigateByUrl('order-info');
         },
         (err: HttpErrorResponse): void => {
           this.errorMessage = err.error.message;
           this.errorHandler.handleError(err);
         }
       );
+    }else{
+      this.messageService.add({
+        severity: 'error',
+        summary: 'error',
+        detail: 'Please Change Racking Location',
+      });
     }
   }
 }
