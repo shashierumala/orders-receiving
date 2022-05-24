@@ -1,5 +1,6 @@
 <p-toolbar>
   <p-button type="button" lable="back" icon="pi pi-arrow-left" (click)="back()"></p-button>
+  <p-button (click)="updateStatus()">Finish Receiving</p-button>
 </p-toolbar>
 <p-toast position="top-center"></p-toast>
 <p-card>
@@ -53,13 +54,15 @@
               <span class="textStyle">Pieces </span>
               <span class="textStyle">{{selectedOrder?.PCS}}</span>
             </div>
-            <div class="width">
+            <div class="lineSpace">
               <span class="textStyle">LENGTH: </span>
               <span class="textStyle">{{selectedOrder?.LENGTH}}</span>
+              <p-button style="padding-left: 2rem;" (click)="changeLength()">Change Length</p-button>
             </div>
-            <div class="width">
+            <div class="lineSpace">
               <span class="textStyle">WIDTH: </span>
               <span class="textStyle">{{selectedOrder?.WIDTH}}</span>
+              <p-button style="padding-left: 2rem;" (click)="changeWidth()">Change Width</p-button>
             </div>
           </div>
           <p-divider></p-divider>
@@ -106,7 +109,7 @@
         </div>
       </div>
     </div>
-    <div class="ContentViewStyle">
+    <!-- <div class="ContentViewStyle">
       <h5 style="padding:8px">Change Length</h5>
       <div style="display: flex;">
         <div>
@@ -139,13 +142,6 @@
           </h3>
         </div>
       </div>
-    </div>
-      <div style="display: flex;">
-        <div class="buttonStyle">
-          <span style="float:right;">
-            <p-button (click)="updateStatus()">Finish Receiving</p-button>
-          </span>
-        </div>
-      </div>
+    </div> -->
   </div>
 </p-card>

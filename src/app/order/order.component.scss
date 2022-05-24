@@ -13,8 +13,19 @@
 }
 
 .width {
-  width: 100%;
   padding:0px 8px
+}
+
+.descColor{
+  color:white; 
+  background-color: #004990;
+}
+
+.displayView {
+  justify-content:space-between; 
+  display:flex; 
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .grid-container {

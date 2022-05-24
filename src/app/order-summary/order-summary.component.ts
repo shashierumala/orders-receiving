@@ -5,6 +5,8 @@ import { Order } from '../orders';
 import { EmployeeInfo } from '../employee';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { SearchModalComponent } from '../reusable/search-modal/search-modal.component';
 
 @Component({
   selector: 'app-order-summary',
@@ -26,12 +28,14 @@ export class OrderSummaryComponent implements OnInit {
   dist!: string;
   item!: string;
   tag!: string;
-
+  ref!: DynamicDialogRef;
+  
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private orderService: OrdersService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private dialogService: DialogService
   ) {}
 
   ngOnInit(): void {
@@ -91,13 +95,12 @@ export class OrderSummaryComponent implements OnInit {
       });
   }
 
-  updateLength() {
-    if (this.length) {
-      this.orderService.sendLength(this.length).subscribe(
+  updateLength(length:any) {
+    if (length) {
+      this.orderService.sendLength(length).subscribe(
         (data) => {
           console.log(data);
           this.loadOrder();
-          this.length = '';
           this.messageService.add({
             severity: 'success',
             summary: 'Success',
@@ -112,9 +115,9 @@ export class OrderSummaryComponent implements OnInit {
     }
   }
 
-  updateWidth() {
-    if (this.width) {
-      this.orderService.sendWidth(this.width).subscribe(
+  updateWidth(width:any) {
+    if (width) {
+      this.orderService.sendWidth(width).subscribe(
         (data) => {
           this.loadOrder();
           console.log(data);
@@ -131,6 +134,47 @@ export class OrderSummaryComponent implements OnInit {
         }
       );
     }
+  }
+
+  changeLengthOrWidth(type: string) {
+    this.ref = this.dialogService.open(SearchModalComponent, {
+      header: type === 'length' ? 'Change Length' : 'Change Width',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+    });
+   this.ref.onClose.subscribe(val=>{
+     if(type === 'length' ){
+      this.updateLength(val)
+     }else{
+      this.updateWidth(val)
+     }
+    
+   })
+  
+  }
+
+  changeLength() {
+    this.ref = this.dialogService.open(SearchModalComponent, {
+      header:  'Change Length',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+    });
+   this.ref.onClose.subscribe(val=>{
+      this.updateLength(val)
+     })
+  
+  }
+
+  changeWidth() {
+    this.ref = this.dialogService.open(SearchModalComponent, {
+      header: 'Change Width',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+    });
+   this.ref.onClose.subscribe(val=>{
+      this.updateWidth(val)
+     })
+  
   }
 
   updateStatus() {

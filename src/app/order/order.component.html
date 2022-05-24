@@ -1,4 +1,4 @@
-<div style="justify-content:space-between; display:flex; align-items: center;">
+<div class="displayView">
   <div class="width">
     <span class="textStyle">PO </span>
     <span  class="textStyle">{{selectedOrder?.PONO}}</span>
@@ -22,7 +22,7 @@
   </div>
 </div>
 <p-divider></p-divider>
-<div style="justify-content:space-between; display:flex; align-items: center;">
+<div class="displayView">
   <div class="width">
     <h2 style="font-weight: lighter;">HEAT {{selectedOrder?.HEAT}}</h2>
   </div>
@@ -32,10 +32,10 @@
 </div>
 <p-divider></p-divider>
 <div style="text-align: center;">
-  <h2 style="color:white; background-color: #004990;">{{selectedOrder?.DESC}}</h2>
+  <h2 class="descColor">{{selectedOrder?.DESC}}</h2>
 </div>
 <p-divider></p-divider>
-<div style="justify-content:space-between; display:flex; align-items: center;">
+<div class="displayView">
   <div class="width">
     <span class="textStyle">Tag Qty </span>
     <span class="textStyle">{{selectedOrder?.TAG_QTY}} {{selectedOrder?.UOM}}</span>
@@ -62,7 +62,7 @@
   <h3 style="font-weight: lighter;">{{selectedOrder?.TAG_COMMENT}}</h3>
 </div>
 <p-divider></p-divider>
-<div style="justify-content:space-between; display:flex; align-items: center;">
+<div class="displayView">
   <div class="width" style="text-align:left;">
     <span class="contentTextStyle">LOC {{selectedOrder?.LOC}}</span>
   </div>

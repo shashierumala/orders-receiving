@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { OrdersService } from '../../services/orders.service';
 
 @Component({
@@ -9,14 +10,14 @@ import { OrdersService } from '../../services/orders.service';
 export class SearchModalComponent implements OnInit {
   value = '';
   errorMessage!: string;
-  constructor(private orderService: OrdersService) {}
+  constructor(private orderService: OrdersService, private  ref: DynamicDialogRef) {}
 
   ngOnInit(): void {
-    this.orderService.searchValue.next('');
   }
 
   onSubmit() {
     this.orderService.searchValue.next(this.value);
+    this.ref.close(this.value)
   }
   clear() {
     this.value = '';
