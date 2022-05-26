@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Order } from '../orders';
 import { EmployeeInfo } from '../employee';
 import { BehaviorSubject } from 'rxjs';
+import { LocalStorage } from '@ng-idle/core';
 
 @Injectable({
   providedIn: 'root',
@@ -12,11 +13,12 @@ export class OrdersService {
   hostUrl: string = environment.url;
   receiveUrl: string = '/receiving?dist=';
   printUrl: string = '/receiving/pit';
-  selectUrl: string = 'receiving?';
+  selectUrl: string = 'receiving/detail?';
   locUrl: string = '/receiving/change/loc';
   widUrl: string = '/receiving/change/wid';
   lenUrl: string = '/receiving/change/len';
   stsUrl: string = '/receiving/change/sts';
+  pcsUrl: string = '/receiving/change/pcs';
   selectedOrder!: Order;
   selectedEmployee!: EmployeeInfo;
   selectedDist!: string;
@@ -30,7 +32,7 @@ export class OrdersService {
     if (this.selectedDist) {
       dist = this.selectedDist;
     } else {
-      const dists: any = localStorage.getItem('order-Info');
+      const dists: any = localStorage.getItem('DIST');
       dist = JSON.parse(dists);
     }
     return this.http.get<any>(`${this.hostUrl}${this.receiveUrl}${dist}`);
@@ -55,49 +57,70 @@ export class OrdersService {
 
   sendLocation(loc: string) {
     console.log('this works')
-    const dist = `${this.selectedEmployee.EMPDIST}`;
-    const add_user = `${this.selectedEmployee.EMPID}`;
+    const dist = localStorage.getItem('DIST');
+    const add_user = localStorage.getItem('EmployeeID');
+    const systemName = localStorage.getItem('EMPSystemName');
     const requestObject = {
-      systemName: this.selectedEmployee.EMPSystemName,
+      systemName,
       dist,
       item: this.selectedOrder.ITEM,
       tag: this.selectedOrder.TAG?.trim(),
       new_location: loc,
       add_user,
     };
-    return this.http.post(`${this.hostUrl}${this.locUrl}`, {
+    return this.http.post<any>(`${this.hostUrl}${this.locUrl}`, {
       ...requestObject,
     });
   }
 
   sendLength(len: Number) {
-    const dist = `${this.selectedEmployee.EMPDIST}`;
-    const add_user = `${this.selectedEmployee.EMPID}`;
+    const dist = localStorage.getItem('DIST');
+    const add_user = localStorage.getItem('EmployeeID');
+    const systemName = localStorage.getItem('EMPSystemName');
     const requestObject = {
-      systemName: this.selectedEmployee.EMPSystemName,
+      systemName,
       dist,
       item: this.selectedOrder.ITEM,
       tag: this.selectedOrder.TAG?.trim(),
       new_length: len,
       add_user,
     };
-    return this.http.post(`${this.hostUrl}${this.lenUrl}`, {
+    return this.http.post<any>(`${this.hostUrl}${this.lenUrl}`, {
       ...requestObject,
     });
   }
 
   sendWidth(wid: Number) {
-    const dist = `${this.selectedEmployee.EMPDIST}`;
-    const add_user = `${this.selectedEmployee.EMPID}`;
+    const dist = localStorage.getItem('DIST');
+    const add_user = localStorage.getItem('EmployeeID');
+    const systemName = localStorage.getItem('EMPSystemName');
     const requestObject = {
-      systemName: this.selectedEmployee.EMPSystemName,
+      systemName,
       dist,
       item: this.selectedOrder.ITEM,
       tag: this.selectedOrder.TAG?.trim(),
       new_width: wid,
       add_user,
     };
-    return this.http.post(`${this.hostUrl}${this.widUrl}`, {
+    return this.http.post<any>(`${this.hostUrl}${this.widUrl}`, {
+      ...requestObject,
+    });
+  }
+
+  
+  sendPieces(pcs: Number) {
+    const dist = localStorage.getItem('DIST');
+    const add_user = localStorage.getItem('EmployeeID');
+    const systemName = localStorage.getItem('EMPSystemName');
+    const requestObject = {
+      systemName,
+      dist,
+      item: this.selectedOrder.ITEM,
+      tag: this.selectedOrder.TAG?.trim(),
+      new_pcs: pcs,
+      add_user,
+    };
+    return this.http.post<any>(`${this.hostUrl}${this.pcsUrl}`, {
       ...requestObject,
     });
   }

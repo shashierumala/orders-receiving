@@ -14,7 +14,6 @@ export class LoadingComponent implements OnInit {
 
     this.app.getLoading().subscribe((status: boolean) => {
       this.showLoading = status;
-      this.cdf.detectChanges();
     });
   }
 

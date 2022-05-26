@@ -53,6 +53,15 @@
   padding: 12px 8px;
 }
 
+@media (min-device-width:820px)  { 
+  .lineSpace {
+    width: 100%;
+   }
+ }
+
+
+
+
 .grid-container {
   display: flex;
   grid-template-columns: auto auto auto auto;

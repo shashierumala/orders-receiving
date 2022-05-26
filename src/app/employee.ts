@@ -1,6 +1,6 @@
 export interface EmployeeInfo {
     EID?: Number;
-    EMPSystemName?: string;
+    EMPSystemName: string;
     EMPDIST?: string;
     EMPID?: string;
     EMPName?: string;

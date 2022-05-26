@@ -1,5 +1,5 @@
 <div class="card">
-  <p-dataView #dv [value]="orders" [paginator]="true" [rows]="20" filterBy="PONO" layout="grid">
+  <p-dataView #dv [value]="orders" [paginator]="true" [rows]="20" [paginatorPosition]="'both'" filterBy="PONO" layout="grid">
     <ng-template pTemplate="header">
       <div class="p-d-flex p-flex-md-row p-jc-md-between">
         <button pButton type="button" label="refresh" [loading]="loading" icon="pi pi-refresh"

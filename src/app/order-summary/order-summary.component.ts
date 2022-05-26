@@ -7,6 +7,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { SearchModalComponent } from '../reusable/search-modal/search-modal.component';
+import { AppLoadingService } from '../services/app-loading.service';
+import { LocationSearchModalComponent } from '../location-search-modal/location-search-modal.component';
 
 @Component({
   selector: 'app-order-summary',
@@ -21,7 +23,8 @@ export class OrderSummaryComponent implements OnInit {
   loc!: string;
   length!: any;
   width!: any;
-  status!:string;
+  pieces!: any;
+  status!: string;
   order: Order[] = [];
   employee: EmployeeInfo[] = [];
   display: boolean = false;
@@ -29,40 +32,49 @@ export class OrderSummaryComponent implements OnInit {
   item!: string;
   tag!: string;
   ref!: DynamicDialogRef;
-  
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private orderService: OrdersService,
     private messageService: MessageService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private loadingService: AppLoadingService
   ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((res: Params) => {
-     this.dist = res['dist'], this.item = res['item'], this.tag=res['tag'];
-    this.loadOrder();
-    })
-  }
-
-  loadOrder(){
-    this.orderService.selectOrder(this.dist, this.item, this.tag).subscribe(res => {
-      console.log(res.data)
-      this.selectedOrder = res.data[0];
-      this.orderService.selectedOrder = res.data[0]
+      (this.dist = res['dist']),
+        (this.item = res['item']),
+        (this.tag = res['tag']);
+      this.loadOrder();
     });
   }
+
+  loadOrder() {
+    this.orderService
+      .selectOrder(this.dist, this.item, this.tag)
+      .subscribe((res) => {
+        console.log(res.data);
+        this.selectedOrder = res.data[0];
+        this.orderService.selectedOrder = res.data[0];
+      });
+  }
+
   back() {
     this.router.navigate(['order-info']);
   }
 
-  onUpdateClick() {
-    if (this.loc) {
-      this.orderService.sendLocation(this.loc).subscribe(
+  onUpdateClick(loc:any) {
+    if (loc) {
+      this.loadingService.setLoading(true);
+      this.selectedOrder = [];
+      this.orderService.sendLocation(loc).subscribe(
         (data) => {
-          this.loadOrder();
+          this.selectedOrder = data.receiving[0];
+          this.orderService.selectedOrder = data.receiving[0];
+          this.loadingService.setLoading(false);
           console.log(data);
-          this.loc = '';
           this.messageService.add({
             severity: 'success',
             summary: 'Success',
@@ -70,6 +82,7 @@ export class OrderSummaryComponent implements OnInit {
           });
         },
         (err: HttpErrorResponse): void => {
+          this.loadingService.setLoading(false);
           this.errorMessage = err.error.message;
           this.errorHandler.handleError(err);
         }
@@ -95,12 +108,16 @@ export class OrderSummaryComponent implements OnInit {
       });
   }
 
-  updateLength(length:any) {
+  updateLength(length: any) {
     if (length) {
+      this.loadingService.setLoading(true);
+      this.selectedOrder = [];
       this.orderService.sendLength(length).subscribe(
         (data) => {
           console.log(data);
-          this.loadOrder();
+          this.selectedOrder = data.receiving[0];
+          this.orderService.selectedOrder = data.receiving[0];
+          this.loadingService.setLoading(false);
           this.messageService.add({
             severity: 'success',
             summary: 'Success',
@@ -108,6 +125,7 @@ export class OrderSummaryComponent implements OnInit {
           });
         },
         (err: HttpErrorResponse): void => {
+          this.loadingService.setLoading(false);
           this.errorMessage = err.error.message;
           this.errorHandler.handleError(err);
         }
@@ -115,13 +133,16 @@ export class OrderSummaryComponent implements OnInit {
     }
   }
 
-  updateWidth(width:any) {
+  updateWidth(width: any) {
     if (width) {
+      this.loadingService.setLoading(true);
+      this.selectedOrder = [];
       this.orderService.sendWidth(width).subscribe(
         (data) => {
-          this.loadOrder();
           console.log(data);
-          this.width = '';
+          this.selectedOrder = data.receiving[0];
+          this.orderService.selectedOrder = data.receiving[0];
+          this.loadingService.setLoading(false);
           this.messageService.add({
             severity: 'success',
             summary: 'Success',
@@ -129,6 +150,7 @@ export class OrderSummaryComponent implements OnInit {
           });
         },
         (err: HttpErrorResponse): void => {
+          this.loadingService.setLoading(false);
           this.errorMessage = err.error.message;
           this.errorHandler.handleError(err);
         }
@@ -136,33 +158,67 @@ export class OrderSummaryComponent implements OnInit {
     }
   }
 
-  changeLengthOrWidth(type: string) {
+  updatePieces(pieces: any) {
+    if (pieces) {
+      this.loadingService.setLoading(true);
+      this.selectedOrder = [];
+      this.orderService.sendPieces(pieces).subscribe(
+        (data) => {
+          console.log(data);
+          this.selectedOrder = data.receiving[0];
+          this.orderService.selectedOrder = data.receiving[0];
+          this.loadingService.setLoading(false);
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Pieces changed successfully',
+          });
+        },
+        (err: HttpErrorResponse): void => {
+          this.loadingService.setLoading(false);
+          this.errorMessage = err.error.message;
+          this.errorHandler.handleError(err);
+        }
+      );
+    }
+  }
+
+  changeLengthOrWidthorPieces(type: string) {
     this.ref = this.dialogService.open(SearchModalComponent, {
-      header: type === 'length' ? 'Change Length' : 'Change Width',
+      header:
+        type === 'length'
+          ? 'Change Length'
+          : 'width'
+          ? 'Change Width'
+          :'pieces'
+          ?'Change Pieces'
+          :'Change Racking Location',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
     });
-   this.ref.onClose.subscribe(val=>{
-     if(type === 'length' ){
-      this.updateLength(val)
-     }else{
-      this.updateWidth(val)
-     }
-    
-   })
-  
+    this.ref.onClose.subscribe((val) => {
+      if (type === 'length') {
+        this.updateLength(val);
+      } else if (type === 'width') {
+        this.updateWidth(val);
+      } else if(type ==='pieces') {
+        this.updatePieces(val);
+      } else {
+        this.onUpdateClick(val);
+      }
+    });
   }
 
   changeLength() {
     this.ref = this.dialogService.open(SearchModalComponent, {
-      header:  'Change Length',
+      header: 'Change Length',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
     });
-   this.ref.onClose.subscribe(val=>{
-      this.updateLength(val)
-     })
-  
+    this.ref.onClose.subscribe((val) => {
+      console.log('>>>>>>>>>>>>>> value ',val)
+      this.updateLength(val);
+    });
   }
 
   changeWidth() {
@@ -171,25 +227,49 @@ export class OrderSummaryComponent implements OnInit {
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
     });
-   this.ref.onClose.subscribe(val=>{
-      this.updateWidth(val)
-     })
-  
+    this.ref.onClose.subscribe((val) => {
+      this.updateWidth(val);
+    });
+  }
+
+  changePieces() {
+    this.ref = this.dialogService.open(SearchModalComponent, {
+      header: 'Change Pieces',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+    });
+    this.ref.onClose.subscribe((val) => {
+      this.updatePieces(val);
+    });
+  }
+
+  changeLocation() {
+    this.ref = this.dialogService.open(LocationSearchModalComponent, {
+      header: 'Change Racking Location',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+    });
+    this.ref.onClose.subscribe((val) => {
+      this.onUpdateClick(val);
+    });
   }
 
   updateStatus() {
-    if ((!this.selectedOrder.LOC.startsWith('IN')) && +this.selectedOrder.STATUS === 2 ) {
+    if (
+      !this.selectedOrder.LOC.startsWith('IN') &&
+      +this.selectedOrder.STATUS === 2
+    ) {
       this.orderService.sendStatus('1').subscribe(
         (data) => {
           console.log(data);
-        this.router.navigateByUrl('order-info');
+          this.router.navigateByUrl('order-info');
         },
         (err: HttpErrorResponse): void => {
           this.errorMessage = err.error.message;
           this.errorHandler.handleError(err);
         }
       );
-    }else{
+    } else {
       this.messageService.add({
         severity: 'error',
         summary: 'error',

@@ -7,11 +7,12 @@ import { OrdersInfoComponent } from './orders-info/orders-info.component';
 import { AuthGuard } from './shared/auth.guard';
 
 const routes: Routes = [
-  {path: 'order-info' , component: OrdersInfoComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginPageComponent},
-  {path: '', redirectTo:'/login', pathMatch : 'full'},
+  {path: 'order-info' , component: OrdersInfoComponent, canActivate: [AuthGuard]},
   {path: 'order-summary/api/receiving', component: OrderSummaryComponent, canActivate: [AuthGuard]},
-  {path:'500', component:ErrorComponentComponent}
+  {path: '', redirectTo:'/login', pathMatch : 'full'},
+  {path:'500', component:ErrorComponentComponent},
+  {path: '**', redirectTo:'/login'}
 ]
 
 @NgModule({

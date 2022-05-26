@@ -10,8 +10,14 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private errorService: ErrorHandlerService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(req).pipe(
-      retry(1),
+
+    const authReq = req.clone({
+      setHeaders: {
+        'Cache-Control': 'no-cache',
+        Pragma: 'no-cache',
+      },
+    });
+    return next.handle(authReq).pipe(
       catchError((error:HttpErrorResponse) => {
         let errorMessage = '';
         let errorMsg = '';

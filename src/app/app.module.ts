@@ -21,7 +21,7 @@ import { TokenStorageService } from './services/token-storage.service';
 import { AuthInterceptor } from './_helpers/auth.interceptor';
 import {ListboxModule} from 'primeng/listbox';
 import {InputNumberModule} from 'primeng/inputnumber';
-import { NgIdleModule } from '@ng-idle/core';
+//import { NgIdleModule } from '@ng-idle/core';
 import {DialogModule} from 'primeng/dialog';
 import {CardModule} from 'primeng/card';
 import {ToastModule} from 'primeng/toast';
@@ -31,9 +31,9 @@ import {PaginatorModule} from 'primeng/paginator';
 import {DataViewModule} from 'primeng/dataview';
 import {DividerModule} from 'primeng/divider';
 import { LoadingComponent } from './loading/loading.component';
-import { LoadingInterceptor } from './_helpers/loading.interceptors';
 import {DialogService, DynamicDialogModule} from 'primeng/dynamicdialog';
 import { SearchModalComponent } from './reusable/search-modal/search-modal.component';
+import { LocationSearchModalComponent } from './location-search-modal/location-search-modal.component';
 
 
 @NgModule({
@@ -45,7 +45,8 @@ import { SearchModalComponent } from './reusable/search-modal/search-modal.compo
     LoginPageComponent,
     OrderComponent,
     LoadingComponent,
-    SearchModalComponent
+    SearchModalComponent,
+    LocationSearchModalComponent
   ],
   imports: [
     BrowserModule,
@@ -67,13 +68,12 @@ import { SearchModalComponent } from './reusable/search-modal/search-modal.compo
     DataViewModule,
     ToastModule,
     SplitterModule,
-    NgIdleModule.forRoot(),
+    //NgIdleModule.forRoot(),
     BrowserAnimationsModule,
     ProgressSpinnerModule
   ],
   bootstrap: [AppComponent],
   providers: [DialogService, OrdersService, AuthService, TokenStorageService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, 
-    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi:true}]
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }]
 })
 export class AppModule { }

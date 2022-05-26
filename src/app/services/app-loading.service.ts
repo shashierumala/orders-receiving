@@ -26,13 +26,9 @@ export class AppLoadingService {
     return this.refreshtime.asObservable();
   }
 
-  show(): void {
-    this.loading = true;
-    this.loadingSub.next(this.loading);
+  setLoading(loading: boolean): void {
+    this.loadingSub.next(loading);
   }
 
-  hide(): void {
-    this.loading = false;
-    this.loadingSub.next(this.loading);
-  }
+
 }
