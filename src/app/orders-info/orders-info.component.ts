@@ -7,6 +7,7 @@ import { ErrorHandlerService } from '../services/error-handler.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { SearchModalComponent } from '../reusable/search-modal/search-modal.component';
+import { AppLoadingService } from '../services/app-loading.service';
 
 @Component({
   selector: 'app-orders-info',
@@ -32,43 +33,60 @@ export class OrdersInfoComponent implements OnInit {
 
   ref!: DynamicDialogRef;
   selectedPo = '';
+  //selectedHeat ='';
   constructor(
     private router: Router,
     private ordersService: OrdersService,
     private errorHandler: ErrorHandlerService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private loadingService: AppLoadingService
   ) {}
 
   ngOnInit(): void {
     if (this.selectedDist) {
       this.selectedDist = this.ordersService.selectedDist;
     } else {
-      const orders: any = localStorage.getItem('order-Info');
+      const orders: any = localStorage.getItem('DIST');
       this.selectedDist = JSON.parse(orders);
     }
     this.getOrdersInfo();
     this.ordersService.searchValue.subscribe((val) => {
       if (val !== '') {
         this.selectedPo = val;
-        this.table.filter(val, 'equals', 'equals');
-        this.ref.close();
+        if (this.table) {
+          this.table.filter(val, 'equals', 'equals');
+        }
+        if (this.ref) {
+          this.ref.close();
+        }
       }
     });
+
+    // this.ordersService.searchValue1.subscribe((val1) => {
+    //   if (val1 !== '') {
+    //     this.selectedHeat = val1;
+    //     if (this.table) {
+    //       this.table.filter(val1, 'equals', 'equals');
+    //     }
+    //     if (this.ref) {
+    //       this.ref.close();
+    //     }
+    //   }
+    // });
   }
 
   refresh() {
     this.selectedPo = '';
+    //this.selectedHeat ='';
     this.loading = true;
     this.getOrdersInfo();
   }
   getOrdersInfo() {
+    this.orders = [];
+    this.loadingService.setLoading(true);
     this.ordersService.getOrders().subscribe(
       (res) => {
         this.orders = res.data;
-        this.ordersInfo = this.orders.slice(
-          this.paginationIndex,
-          this.paginationIndex + this.noRows
-        );
         if (this.orders.length > 0) {
           const col = Object.keys(this.orders[0]);
           this.cols = col;
@@ -76,30 +94,39 @@ export class OrdersInfoComponent implements OnInit {
           this.loading = false;
         }
         this.selectedPo = '';
+        //this.selectedHeat = '';
+        this.loadingService.setLoading(false);
       },
       (err: HttpErrorResponse): void => {
+        this.loadingService.setLoading(false);
         this.errorHandler.handleError(err);
         this.errorMessage = this.errorHandler.errorMessage;
       }
     );
   }
-  changePagination(event: any) {
-    this.ordersInfo = this.orders.slice(event.first, event.first + event.rows);
-    console.log(event);
-  }
 
   logout() {
     localStorage.removeItem('EmployeeID');
+    localStorage.removeItem('DIST');
     this.router.navigate(['/login']);
   }
 
-  showSearch() {
+  showPOSearch() {
     this.ref = this.dialogService.open(SearchModalComponent, {
       header: 'Search PO Number',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
     });
   }
+
+  // showHeatSearch() {
+  //   this.ref = this.dialogService.open(SearchModalComponent, {
+  //     header: 'Search Heat Number',
+  //     contentStyle: { overflow: 'auto' },
+  //     baseZIndex: 10000,
+  //   });
+  // }
+
 
   next() {
     this.first = this.first + this.rows;

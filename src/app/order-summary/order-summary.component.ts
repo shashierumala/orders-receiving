@@ -258,13 +258,18 @@ export class OrderSummaryComponent implements OnInit {
     if (
       !this.selectedOrder.LOC.startsWith('IN') &&
       +this.selectedOrder.STATUS === 2
-    ) {
+    ) 
+    {
+      this.loadingService.setLoading(true);
+      this.selectedOrder = [];
       this.orderService.sendStatus('1').subscribe(
         (data) => {
           console.log(data);
+          this.loadingService.setLoading(false);
           this.router.navigateByUrl('order-info');
         },
         (err: HttpErrorResponse): void => {
+          this.loadingService.setLoading(false);
           this.errorMessage = err.error.message;
           this.errorHandler.handleError(err);
         }

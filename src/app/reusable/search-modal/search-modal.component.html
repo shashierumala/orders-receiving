@@ -2,7 +2,7 @@
   <div>
     <div class="p-float-label" style="padding:24px">
       <div style="padding-right:8px"><input id="float-input" type="text"  inputmode="text" [(ngModel)]="value" pInputText></div>
-      <button pButton type="button" label="clear" class="buttonStyle" (click)="clear()"></button>
+      <button pButton type="button" icon="pi pi-arrow-right" label="submit"  (click)="onSubmit()" [disabled]="!value"></button>
     </div>
     <div class="grid-container">
       <button pButton type="button" label="7" (click)="value = value +'7'"></button>
@@ -15,7 +15,7 @@
       <button pButton type="button" label="2" (click)="value = value +'2'"></button>
       <button pButton type="button" label="3" (click)="value = value +'3'"></button>
       <button pButton type="button" label="0" (click)="value = value +'0'"></button>
-      <button pButton type="button" icon="pi pi-arrow-right" (click)="onSubmit()" [disabled]="!value"></button>
+      <button pButton type="button" label="clr" class="buttonStyle" (click)="clear()"></button>
     </div>
     <br>
     <h3 *ngIf="errorMessage" style="color: red;">
