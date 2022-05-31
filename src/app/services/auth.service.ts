@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-const AUTH_API = 'http://twshop-dev.twmetals.net/NexGen40-Receiving/api/user/';
+const AUTH_API = 'http://nexgen40.twmetals.net/NexGen40-ReceivingAPI/api/user/';
 
 @Injectable({
   providedIn: 'root',

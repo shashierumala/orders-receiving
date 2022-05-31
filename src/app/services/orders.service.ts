@@ -11,9 +11,9 @@ import { LocalStorage } from '@ng-idle/core';
 })
 export class OrdersService {
   hostUrl: string = environment.url;
-  receiveUrl: string = '/receiving?dist=';
+  receiveUrl: string = 'receiving?dist=';
   printUrl: string = '/receiving/pit';
-  selectUrl: string = 'receiving/detail?';
+  selectUrl: string = '/receiving/detail?';
   locUrl: string = '/receiving/change/loc';
   widUrl: string = '/receiving/change/wid';
   lenUrl: string = '/receiving/change/len';
@@ -24,6 +24,7 @@ export class OrdersService {
   selectedDist!: string;
   employee!: EmployeeInfo;
   searchValue = new BehaviorSubject<string>('');
+  searchValue1 = new BehaviorSubject<string>('');
 
   constructor(private http: HttpClient) {}
 

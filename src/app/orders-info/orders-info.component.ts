@@ -27,6 +27,7 @@ export class OrdersInfoComponent implements OnInit {
   loading = true;
   errorMessage: string = '';
   selectedDist!: string;
+  myPaginationString:string ='';
 
   @ViewChild('dv') table!: Table;
   @ViewChild('filter') filter!: ElementRef;
@@ -81,6 +82,10 @@ export class OrdersInfoComponent implements OnInit {
     this.loading = true;
     this.getOrdersInfo();
   }
+
+  paginate(event:any) {
+    window.scrollTo(226,226);
+}
   getOrdersInfo() {
     this.orders = [];
     this.loadingService.setLoading(true);

@@ -25,6 +25,7 @@ export class OrderSummaryComponent implements OnInit {
   width!: any;
   pieces!: any;
   status!: string;
+  loading = true;
   order: Order[] = [];
   employee: EmployeeInfo[] = [];
   display: boolean = false;
@@ -52,13 +53,20 @@ export class OrderSummaryComponent implements OnInit {
   }
 
   loadOrder() {
+    this.loadingService.setLoading(true);
     this.orderService
       .selectOrder(this.dist, this.item, this.tag)
       .subscribe((res) => {
         console.log(res.data);
         this.selectedOrder = res.data[0];
         this.orderService.selectedOrder = res.data[0];
+        this.loadingService.setLoading(false);
       });
+  }
+
+  
+  refresh() {
+    this. loadOrder();
   }
 
   back() {

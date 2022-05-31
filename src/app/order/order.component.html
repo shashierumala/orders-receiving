@@ -15,18 +15,16 @@
     <span class="textStyle">Tag </span>
     <span class="textStyle">{{selectedOrder?.TAG}}</span>
   </div>
-  <div class="width">
-    <span style="float:right;">
+  <div style="float:right;">
       <p-button lable="Select Order Summary" (click)="selectOrder(selectedOrder)">Select TAG</p-button>
-    </span>
   </div>
 </div>
 <p-divider></p-divider>
 <div class="displayView">
-  <div class="width">
+  <div>
     <h2 style="font-weight: lighter;">HEAT {{selectedOrder?.HEAT}}</h2>
   </div>
-  <div class="width">
+  <div>
     <h2 style="font-weight: lighter;">MILL_NO {{selectedOrder?.MILL_NO}}</h2>
   </div>
 </div>
@@ -36,29 +34,29 @@
 </div>
 <p-divider></p-divider>
 <div class="displayView">
-  <div class="width">
+  <div>
     <span class="textStyle">Tag Qty </span>
     <span class="textStyle">{{selectedOrder?.TAG_QTY}} {{selectedOrder?.UOM}}</span>
   </div>
-  <div class="width">
+  <div>
     <span class="textStyle">Pieces </span>
     <span class="textStyle">{{selectedOrder?.PCS}}</span>
   </div>
-  <div class="width">
+  <div>
     <span class="textStyle">LENGTH: </span>
     <span class="textStyle">{{selectedOrder?.LENGTH}}</span>
   </div>
-  <div class="width">
+  <div>
     <span class="textStyle">WIDTH: </span>
     <span class="textStyle">{{selectedOrder?.WIDTH}}</span>
   </div>
 </div>
 <p-divider></p-divider>
-<div class="width" style="text-align:left;">
+<div style="text-align:left;">
   <h3 style="font-weight: lighter;">VENDOR {{selectedOrder?.VENDOR}}</h3>
 </div>
 <p-divider></p-divider>
-<div class="width" style="text-align:left;">
+<div style="text-align:left;">
   <h3 style="font-weight: lighter;">{{selectedOrder?.TAG_COMMENT}}</h3>
 </div>
 <p-divider></p-divider>

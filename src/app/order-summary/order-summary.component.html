@@ -1,5 +1,6 @@
 <p-toolbar>
   <p-button type="button" lable="back" icon="pi pi-arrow-left" (click)="back()"></p-button>
+  <button pButton type="button" label="refresh" icon="pi pi-refresh" (click)="refresh()"></button>
   <p-button (click)="updateStatus()">Finish Receiving</p-button>
 </p-toolbar>
 <p-toast position="top-center"></p-toast>
@@ -21,22 +22,20 @@
               <span class="textStyle">Item </span>
               <span class="textStyle">{{selectedOrder?.ITEM}}</span>
             </div>
-            <div class="width">
-              <span class="textStyle">Tag </span>
+            <div>
+              <span clasdths="textStyle">Tag </span>
               <span class="textStyle">{{selectedOrder?.TAG}}</span>
             </div>
-            <div class="width">
-              <span style="float:right;">
-                <p-button (click)="onSubmit()">Print Inventory Tag</p-button>
-              </span>
+            <div style="float:right;">
+              <p-button (click)="onSubmit()">Print Inventory Tag</p-button>
             </div>
           </div>
           <p-divider></p-divider>
           <div class="displayView">
-            <div class="width">
+            <div>
               <h2 style="font-weight: lighter;">HEAT {{selectedOrder?.HEAT}}</h2>
             </div>
-            <div class="width">
+            <div>
               <h2 style="font-weight: lighter;">MILL_NO {{selectedOrder?.MILL_NO}}</h2>
             </div>
           </div>
@@ -46,56 +45,57 @@
           </div>
           <p-divider></p-divider>
           <div class="displayView">
-            <div class="width">
+            <div>
               <span class="textStyle">Tag Qty </span>
               <span class="textStyle">{{selectedOrder?.TAG_QTY}} {{selectedOrder?.UOM}}</span>
             </div>
             <div class="lineSpace">
               <span class="textStyle">Pieces </span>
               <span class="textStyle">{{selectedOrder?.PCS}}</span>
-              <span style="padding-left:2rem; float:right;" >
-              <p-button (click)="changePieces()">Change Pieces</p-button>
+              <span style="padding-left:2rem; float:right;">
+                <button pButton type="button" (click)="changePieces()">Change Pieces</button>
               </span>
             </div>
             <div class="lineSpace">
               <span class="textStyle">LENGTH: </span>
               <span class="textStyle">{{selectedOrder?.LENGTH}}</span>
-              <span style="float:right;" >
-              <p-button (click)="changeLength()">Change Length</p-button>
+              <span style="float:right;">
+                <button pButton type="button" (click)="changeLength()">Change Length</button>
               </span>
             </div>
             <div class="lineSpace">
               <span class="textStyle">WIDTH: </span>
               <span class="textStyle">{{selectedOrder?.WIDTH}}</span>
-              <span style="float:right;" >
-              <p-button (click)="changeWidth()">Change Width</p-button>
+              <span style="float:right;">
+                <button pButton type="button" (click)="changeWidth()">Change Width</button>
               </span>
             </div>
           </div>
           <div>
-            
           </div>
           <p-divider></p-divider>
-          <div class="width" style="text-align:left;">
+          <div style="text-align:left;">
             <h3 style="font-weight: lighter;">VENDOR {{selectedOrder?.VENDOR}}</h3>
           </div>
           <p-divider></p-divider>
-          <div class="width" style="text-align:left;">
+          <div style="text-align:left;">
             <h3 style="font-weight: lighter;">{{selectedOrder?.TAG_COMMENT}}</h3>
           </div>
           <p-divider></p-divider>
-          <div class="displayView">
-            <div class="lineSpace" style="text-align:left;">
+          <div>
+            <div class="locationGrid">
               <span class="contentTextStyle">LOC {{selectedOrder?.LOC}}</span>
-              <span style="padding-left: 2rem; float:right;" >
+              <span style="padding-top: 16px;">
                 <p-button (click)="changeLocation()">Change Racking Location</p-button>
-                </span>
+              </span>
             </div>
-            <div class="width">
-              <h3 style="font-weight: lighter;">REC_DATE {{selectedOrder?.REC_DATE}}</h3>
-            </div>
-            <div class="width" style="text-align:right;">
-              <span class="contentTextStyle">Status {{selectedOrder?.STATUS}}</span>
+            <div class="locationGrid">
+              <div style="padding-top: 24px;">
+                <h3 style="font-weight: lighter;">REC_DATE {{selectedOrder?.REC_DATE}}</h3>
+              </div>
+              <div>
+                <span class="contentTextStyle">Status {{selectedOrder?.STATUS}}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -103,58 +103,3 @@
     </div>
   </div>
 </p-card>
-<!-- <p-card>
-  <div class="gridChangeView">
-    <div class="ContentViewStyle">
-      <h5 style="padding:8px">Racking Location</h5>
-      <div style="display: flex;">
-        <div>
-          <span class="p-float-label">
-            <input id="float-input" type="text" [(ngModel)]="loc" pInputText>
-          </span>
-          <p-button type="button" lable="submit" (click)="onUpdateClick()" [disabled]="!loc"
-            class="locationButtonStyle">
-            submit</p-button>
-          <br>
-          <h3 *ngIf="errorMessage" style="color: red;">
-            {{errorMessage}}
-          </h3>
-        </div>
-      </div>
-    </div>
-    <div class="ContentViewStyle">
-      <h5 style="padding:8px">Change Length</h5>
-      <div style="display: flex;">
-        <div>
-          <span class="p-float-label">
-            <input id="float-input" type="text" [(ngModel)]="length" pInputText>
-          </span>
-          <p-button type="button" lable="submit" (click)="updateLength()" [disabled]="!length"
-            class="locationButtonStyle">
-            submit</p-button>
-          <br>
-          <h3 *ngIf="errorMessage" style="color: red;">
-            {{errorMessage}}
-          </h3>
-        </div>
-      </div>
-    </div>
-    <div class="ContentViewStyle">
-      <h5 style="padding:8px">Change Width</h5>
-      <div style="display: flex;">
-        <div>
-          <span class="p-float-label">
-            <input id="float-input" type="text" [(ngModel)]="width" pInputText>
-          </span>
-          <p-button type="button" lable="submit" (click)="updateWidth()" [disabled]="!width"
-            class="locationButtonStyle">
-            submit</p-button>
-          <br>
-          <h3 *ngIf="errorMessage" style="color: red;">
-            {{errorMessage}}
-          </h3>
-        </div>
-      </div>
-    </div>
-  </div>
-</p-card> -->

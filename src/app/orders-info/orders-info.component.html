@@ -1,6 +1,6 @@
 <div class="card">
   <p-dataView #dv [value]="orders" [paginator]="true" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-   [rows]="20" [paginatorPosition]="'both'" filterBy="PONO" layout="grid">
+   [rows]="20" [paginatorPosition]="'both'" (onPage)="paginate($event)" filterBy="PONO, HEAT" layout="grid">
     <ng-template pTemplate="header">
       <div class="p-d-flex p-flex-md-row p-jc-md-between">
         <button pButton type="button" label="refresh" [loading]="loading" icon="pi pi-refresh"
@@ -8,6 +8,9 @@
         <h4 style="display:flex; padding-right:1rem" *ngIf="selectedPo !== ''">Search Results for PO Number: <h3
             style="padding-left:1rem;font-weight:bold;"> {{selectedPo}}</h3>
         </h4>
+        <!-- <h4 style="display:flex; padding-right:1rem" *ngIf="selectedHEAT !== ''">Search Results for HEAT Number: <h3
+          style="padding-left:1rem;font-weight:bold;"> {{selectedHEAT}}</h3>
+      </h4> -->
         <span class="p-input-icon-left p-mb-2 p-mb-md-0">
           <button pButton type="button" label="Enter PO Number" icon="pi pi-addition" (click)="showPOSearch()"> </button>
         </span>
