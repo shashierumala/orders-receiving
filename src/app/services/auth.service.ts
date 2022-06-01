@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-const AUTH_API = 'http://nexgen40.twmetals.net/NexGen40-ReceivingAPI/api/user/';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +9,10 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(empId: string) {
-    return this.http.post<any>(AUTH_API + 'login?empid=' + empId, {});
+    return this.http.post<any>(
+      environment.url + '/user/' + 'login?empid=' + empId,
+      {}
+    );
   }
 
   isLoggedIn() {

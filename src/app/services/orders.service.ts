@@ -4,14 +4,13 @@ import { environment } from 'src/environments/environment';
 import { Order } from '../orders';
 import { EmployeeInfo } from '../employee';
 import { BehaviorSubject } from 'rxjs';
-import { LocalStorage } from '@ng-idle/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrdersService {
   hostUrl: string = environment.url;
-  receiveUrl: string = 'receiving?dist=';
+  receiveUrl: string = '/receiving?dist=';
   printUrl: string = '/receiving/pit';
   selectUrl: string = '/receiving/detail?';
   locUrl: string = '/receiving/change/loc';
@@ -40,7 +39,6 @@ export class OrdersService {
   }
 
   selectOrder(dist: string, item: string, tag: string) {
-    console.log('this should work')
     let params = new HttpParams();
     params = params.append('dist', dist);
     params = params.append('item', item);
@@ -57,7 +55,6 @@ export class OrdersService {
   }
 
   sendLocation(loc: string) {
-    console.log('this works')
     const dist = localStorage.getItem('DIST');
     const add_user = localStorage.getItem('EmployeeID');
     const systemName = localStorage.getItem('EMPSystemName');
@@ -108,7 +105,6 @@ export class OrdersService {
     });
   }
 
-  
   sendPieces(pcs: Number) {
     const dist = localStorage.getItem('DIST');
     const add_user = localStorage.getItem('EmployeeID');

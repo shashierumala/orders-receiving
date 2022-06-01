@@ -57,23 +57,21 @@ export class OrderSummaryComponent implements OnInit {
     this.orderService
       .selectOrder(this.dist, this.item, this.tag)
       .subscribe((res) => {
-        console.log(res.data);
         this.selectedOrder = res.data[0];
         this.orderService.selectedOrder = res.data[0];
         this.loadingService.setLoading(false);
       });
   }
 
-  
   refresh() {
-    this. loadOrder();
+    this.loadOrder();
   }
 
   back() {
     this.router.navigate(['order-info']);
   }
 
-  onUpdateClick(loc:any) {
+  onUpdateClick(loc: any) {
     if (loc) {
       this.loadingService.setLoading(true);
       this.selectedOrder = [];
@@ -82,7 +80,6 @@ export class OrderSummaryComponent implements OnInit {
           this.selectedOrder = data.receiving[0];
           this.orderService.selectedOrder = data.receiving[0];
           this.loadingService.setLoading(false);
-          console.log(data);
           this.messageService.add({
             severity: 'success',
             summary: 'Success',
@@ -106,7 +103,6 @@ export class OrderSummaryComponent implements OnInit {
         this.selectedOrder.ITEM
       )
       .subscribe((data) => {
-        console.log(data);
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
@@ -122,7 +118,6 @@ export class OrderSummaryComponent implements OnInit {
       this.selectedOrder = [];
       this.orderService.sendLength(length).subscribe(
         (data) => {
-          console.log(data);
           this.selectedOrder = data.receiving[0];
           this.orderService.selectedOrder = data.receiving[0];
           this.loadingService.setLoading(false);
@@ -147,7 +142,6 @@ export class OrderSummaryComponent implements OnInit {
       this.selectedOrder = [];
       this.orderService.sendWidth(width).subscribe(
         (data) => {
-          console.log(data);
           this.selectedOrder = data.receiving[0];
           this.orderService.selectedOrder = data.receiving[0];
           this.loadingService.setLoading(false);
@@ -172,7 +166,6 @@ export class OrderSummaryComponent implements OnInit {
       this.selectedOrder = [];
       this.orderService.sendPieces(pieces).subscribe(
         (data) => {
-          console.log(data);
           this.selectedOrder = data.receiving[0];
           this.orderService.selectedOrder = data.receiving[0];
           this.loadingService.setLoading(false);
@@ -198,9 +191,9 @@ export class OrderSummaryComponent implements OnInit {
           ? 'Change Length'
           : 'width'
           ? 'Change Width'
-          :'pieces'
-          ?'Change Pieces'
-          :'Change Racking Location',
+          : 'pieces'
+          ? 'Change Pieces'
+          : 'Change Racking Location',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
     });
@@ -209,7 +202,7 @@ export class OrderSummaryComponent implements OnInit {
         this.updateLength(val);
       } else if (type === 'width') {
         this.updateWidth(val);
-      } else if(type ==='pieces') {
+      } else if (type === 'pieces') {
         this.updatePieces(val);
       } else {
         this.onUpdateClick(val);
@@ -224,7 +217,6 @@ export class OrderSummaryComponent implements OnInit {
       baseZIndex: 10000,
     });
     this.ref.onClose.subscribe((val) => {
-      console.log('>>>>>>>>>>>>>> value ',val)
       this.updateLength(val);
     });
   }
@@ -266,13 +258,11 @@ export class OrderSummaryComponent implements OnInit {
     if (
       !this.selectedOrder.LOC.startsWith('IN') &&
       +this.selectedOrder.STATUS === 2
-    ) 
-    {
+    ) {
       this.loadingService.setLoading(true);
       this.selectedOrder = [];
       this.orderService.sendStatus('1').subscribe(
         (data) => {
-          console.log(data);
           this.loadingService.setLoading(false);
           this.router.navigateByUrl('order-info');
         },

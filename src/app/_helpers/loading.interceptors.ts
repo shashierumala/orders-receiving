@@ -29,7 +29,6 @@ export class LoadingInterceptor implements HttpInterceptor {
   private decreaseRequest() {
     this.totalRequest--;
     if (this.totalRequest === 0) {
-     
     }
   }
 }

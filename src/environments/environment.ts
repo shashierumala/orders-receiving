@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url:'http://nexgen40.twmetals.net/NexGen40-ReceivingAPI/api/'
+  url: 'http://localhost:5012',
 };
 
 /*
