@@ -1,71 +1,71 @@
-<div style="padding:48px">
+<div>
   <div>
     <div class="p-float-label" style="padding:24px; justify-content: center;">
-      <div style="padding-right:8px"><input id="float-input" type="text" inputmode="text" maxlength="7"
+      <div style="padding-right:8px"><input id="float-input" type="text" inputmode="text" maxlength="lengthValue"
           [(ngModel)]="value" pInputText></div>
       <button pButton type="button" icon="pi pi-arrow-right" label="submit" (click)="onSubmit()"
         [disabled]="!value"></button>
     </div>
     <div class="grid-container">
-      <button pButton type="button" label="1" (click)="value.length <7 && value = value +'1'"></button>
+      <button pButton type="button" label="1" (click)="value.length <lengthValue && value = value +'1'"></button>
       <button class="p-button-style-class" pButton type="button" label="2"
-        (click)="value.length <7 && value = value +'2'"></button>
-      <button pButton type="button" label="3" (click)="value.length <7 && value = value +'3'"></button>
+        (click)="value.length <lengthValue && value = value +'2'"></button>
+      <button pButton type="button" label="3" (click)="value.length <lengthValue && value = value +'3'"></button>
       <button class="p-button-style-class" pButton type="button" label="4"
-        (click)="value.length <7 && value = value +'4'"></button>
-      <button pButton type="button" label="5" (click)="value.length <7 && value = value +'5'"></button>
+        (click)="value.length <lengthValue && value = value +'4'"></button>
+      <button pButton type="button" label="5" (click)="value.length <lengthValue && value = value +'5'"></button>
       <button class="p-button-style-class" pButton type="button" label="6"
-        (click)="value.length <7 && value = value +'6'"></button>
-      <button pButton type="button" label="7" (click)="value.length <7 && value = value +'7'"></button>
+        (click)="value.length <lengthValue && value = value +'6'"></button>
+      <button pButton type="button" label="7" (click)="value.length <lengthValue && value = value +'7'"></button>
       <button class="p-button-style-class" pButton type="button" label="8"
-        (click)="value.length <7 && value = value +'8'"></button>
-      <button pButton type="button" label="9" (click)="value.length <7 && value = value +'9'"></button>
+        (click)="value.length <lengthValue && value = value +'8'"></button>
+      <button pButton type="button" label="9" (click)="value.length <lengthValue && value = value +'9'"></button>
       <button class="p-button-style-class" pButton type="button" label="0"
-        (click)="value.length <7 && value = value +'0'"></button>
+        (click)="value.length <lengthValue && value = value +'0'"></button>
     </div>
     <div class="grid-container">
-      <button pButton type="button" label="Q" (click)="value.length <7 &&  value = value +'Q'"></button>
+      <button pButton type="button" label="Q" (click)="value.length <lengthValue &&  value = value +'Q'"></button>
       <button class="p-button-style-class" pButton type="button" label="W"
-        (click)="value.length <7 &&  value = value +'W'"></button>
-      <button pButton type="button" label="E" (click)="value.length <7 &&  value = value +'E'"></button>
+        (click)="value.length <lengthValue &&  value = value +'W'"></button>
+      <button pButton type="button" label="E" (click)="value.length <lengthValue &&  value = value +'E'"></button>
       <button class="p-button-style-class" pButton type="button" label="R"
-        (click)="value.length <7 &&  value = value +'R'"></button>
-      <button pButton type="button" label="T" (click)="value.length <7 &&  value = value +'T'"></button>
+        (click)="value.length <lengthValue &&  value = value +'R'"></button>
+      <button pButton type="button" label="T" (click)="value.length <lengthValue &&  value = value +'T'"></button>
       <button class="p-button-style-class" pButton type="button" label="Y"
-        (click)="value.length <7 &&  value = value +'Y'"></button>
-      <button pButton type="button" label="U" (click)="value.length <7 &&  value = value +'U'"></button>
+        (click)="value.length <lengthValue &&  value = value +'Y'"></button>
+      <button pButton type="button" label="U" (click)="value.length <lengthValue &&  value = value +'U'"></button>
       <button class="p-button-style-class" pButton type="button" label="I"
-        (click)="value.length <7 &&  value = value +'I'"></button>
-      <button pButton type="button" label="O" (click)="value.length <7 &&  value = value +'O'"></button>
+        (click)="value.length <lengthValue &&  value = value +'I'"></button>
+      <button pButton type="button" label="O" (click)="value.length <lengthValue &&  value = value +'O'"></button>
       <button class="p-button-style-class" pButton type="button" label="P"
-        (click)="value.length <7 && value = value +'P'"></button>
+        (click)="value.length <lengthValue && value = value +'P'"></button>
     </div>
     <div class="grid-container">
-      <button pButton type="button" label="A" (click)="value.length <7 && value = value +'A'"></button>
+      <button pButton type="button" label="A" (click)="value.length <lengthValue && value = value +'A'"></button>
       <button class="p-button-style-class" pButton type="button" label="S"
-        (click)="value.length <7 && value = value +'S'"></button>
-      <button pButton type="button" label="D" (click)="value.length <7 && value = value +'D'"></button>
+        (click)="value.length <lengthValue && value = value +'S'"></button>
+      <button pButton type="button" label="D" (click)="value.length <lengthValue && value = value +'D'"></button>
       <button class="p-button-style-class" pButton type="button" label="F"
-        (click)="value.length <7 && value = value +'F'"></button>
-      <button pButton type="button" label="G" (click)="value.length <7 && value = value +'G'"></button>
+        (click)="value.length <lengthValue && value = value +'F'"></button>
+      <button pButton type="button" label="G" (click)="value.length <lengthValue && value = value +'G'"></button>
       <button class="p-button-style-class" pButton type="button" label="H"
-        (click)="value.length <7 && value = value +'H'"></button>
-      <button pButton type="button" label="J" (click)="value.length <7 && value = value +'J'"></button>
+        (click)="value.length <lengthValue && value = value +'H'"></button>
+      <button pButton type="button" label="J" (click)="value.length <lengthValue && value = value +'J'"></button>
       <button class="p-button-style-class" pButton type="button" label="K"
-        (click)="value.length <7 && value = value +'K'"></button>
-      <button pButton type="button" label="L" (click)="value.length <7 && value = value +'L'"></button>
+        (click)="value.length <lengthValue && value = value +'K'"></button>
+      <button pButton type="button" label="L" (click)="value.length <lengthValue && value = value +'L'"></button>
     </div>
     <div class="grid-container">
-      <button pButton type="button" label="Z" (click)="value.length <7 && value = value +'Z'"></button>
+      <button pButton type="button" label="Z" (click)="value.length <lengthValue && value = value +'Z'"></button>
       <button class="p-button-style-class" pButton type="button" label="X"
-        (click)="value.length <7 && value = value +'X'"></button>
-      <button pButton type="button" label="C" (click)="value.length <7 && value = value +'C'"></button>
+        (click)="value.length <lengthValue && value = value +'X'"></button>
+      <button pButton type="button" label="C" (click)="value.length <lengthValue && value = value +'C'"></button>
       <button class="p-button-style-class" pButton type="button" label="V"
-        (click)="value.length <7 && value = value +'V'"></button>
-      <button pButton type="button" label="B" (click)="value.length <7 && value = value +'B'"></button>
+        (click)="value.length <lengthValue && value = value +'V'"></button>
+      <button pButton type="button" label="B" (click)="value.length <lengthValue && value = value +'B'"></button>
       <button class="p-button-style-class" pButton type="button" label="N"
-        (click)="value.length <7 && value = value +'N'"></button>
-      <button pButton type="button" label="M" (click)="value.length <7 && value = value +'M'"></button>
+        (click)="value.length <lengthValue && value = value +'N'"></button>
+      <button pButton type="button" label="M" (click)="value.length <lengthValue && value = value +'M'"></button>
       <button pButton type="button" label="clr" class="buttonStyle"
         (click)="clear()"></button>
     </div>

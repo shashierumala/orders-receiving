@@ -27,6 +27,12 @@
   color: black;
   overflow: auto;
 }
+@media (min-device-width:768px)
+and (max-device-width: 1024px)  { 
+  .ContentGridStyle {
+    width: 100%;
+   }
+ }
 
 .locationButtonStyle {
   padding: 8px 24px 8px 4rem;
@@ -49,11 +55,25 @@
   padding: 12px 8px;
 }
 
-@media (min-device-width:820px)  { 
+@media (min-device-width:768px) { 
   .lineSpace {
     width: 100%;
    }
  }
+
+ .printTagStyle{
+  display: flex; 
+  justify-content: right;
+ }
+
+ @media (min-device-width:768px)
+and (max-device-width: 1024px) { 
+  .printTagStyle {
+    margin-left: auto;
+    margin-top: 1rem;
+   }
+ }
+
 
 .grid-container {
   display: flex;
@@ -86,6 +106,11 @@
   font-size: 24px;
   font-weight: bold;
 }
+.descColor{
+  color:white; 
+  background-color: #004990;
+  padding:0px 12px;
+}
 
 .contentTextStyle {
   font-size: 48px;
@@ -103,6 +128,7 @@
 
 .p-button {
   width:10rem;
+  display: block ;
 }
 
 .locationGrid {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { OrdersService } from '../services/orders.service';
 
 @Component({
@@ -11,8 +11,13 @@ export class LocationSearchModalComponent implements OnInit {
    
   value = '';
   errorMessage!: string;
-  
-  constructor(private orderService: OrdersService, private  ref: DynamicDialogRef) { }
+  lengthValue = 7;
+  constructor(private orderService: OrdersService, private  ref: DynamicDialogRef, config: DynamicDialogConfig) {
+    const length = config?.data?.searchLength;
+    if(length){
+      this.lengthValue = length
+    }
+   }
 
   ngOnInit(): void {
   }

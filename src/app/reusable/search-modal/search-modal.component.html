@@ -2,7 +2,7 @@
   <div>
     <div class="p-float-label" style="padding:24px">
       <div style="padding-right:8px"><input id="float-input" type="text"  inputmode="text" [(ngModel)]="value" pInputText></div>
-      <button pButton type="button" icon="pi pi-arrow-right" label="submit"  (click)="onSubmit()" [disabled]="!value"></button>
+      <button pButton type="button" icon="pi pi-arrow-right" label="submit"  (click)="onSubmit()" [disabled]="isPoNumber ? value.length !==8 : !value"></button>
     </div>
     <div class="grid-container">
       <button pButton type="button" label="7" (click)="value = value +'7'"></button>

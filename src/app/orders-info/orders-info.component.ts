@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Input, ChangeDetectorRef } from '@angular/core';
 import { OrdersService } from '../services/orders.service';
 import { Order } from '../orders';
 import { Table } from 'primeng/table';
@@ -8,6 +8,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { SearchModalComponent } from '../reusable/search-modal/search-modal.component';
 import { AppLoadingService } from '../services/app-loading.service';
+import { LocationSearchModalComponent } from '../location-search-modal/location-search-modal.component';
 
 @Component({
   selector: 'app-orders-info',
@@ -28,13 +29,15 @@ export class OrdersInfoComponent implements OnInit {
   errorMessage: string = '';
   selectedDist!: string;
   myPaginationString:string ='';
-
+  searchType = '';
+  noOfPages = 20;
   @ViewChild('dv') table!: Table;
   @ViewChild('filter') filter!: ElementRef;
 
   ref!: DynamicDialogRef;
   selectedPo = '';
-  //selectedHeat ='';
+  filterdColumn = 'HEAT';
+  
   constructor(
     private router: Router,
     private ordersService: OrdersService,
@@ -55,6 +58,7 @@ export class OrdersInfoComponent implements OnInit {
       if (val !== '') {
         this.selectedPo = val;
         if (this.table) {
+  
           this.table.filter(val, 'equals', 'equals');
         }
         if (this.ref) {
@@ -62,29 +66,17 @@ export class OrdersInfoComponent implements OnInit {
         }
       }
     });
-
-    // this.ordersService.searchValue1.subscribe((val1) => {
-    //   if (val1 !== '') {
-    //     this.selectedHeat = val1;
-    //     if (this.table) {
-    //       this.table.filter(val1, 'equals', 'equals');
-    //     }
-    //     if (this.ref) {
-    //       this.ref.close();
-    //     }
-    //   }
-    // });
   }
 
   refresh() {
     this.selectedPo = '';
-    //this.selectedHeat ='';
     this.loading = true;
     this.getOrdersInfo();
+
   }
 
   paginate(event:any) {
-    window.scrollTo(226,226);
+    window.scrollTo(0,0);
 }
   getOrdersInfo() {
     this.orders = [];
@@ -92,14 +84,21 @@ export class OrdersInfoComponent implements OnInit {
     this.ordersService.getOrders().subscribe(
       (res) => {
         this.orders = res.data;
+        this.orders.forEach((obj: any)=>{
+          Object.keys(obj).map(k => obj[k] = typeof obj[k] == 'string' ? obj[k].trim() : obj[k]);
+        })
         if (this.orders.length > 0) {
           const col = Object.keys(this.orders[0]);
           this.cols = col;
+          this.filterdColumn = 'PONO'
           this.table.filter('', 'equals', 'equals');
+          this.noOfPages = 20;
+          this.table.filteredValue = this.orders
           this.loading = false;
+
+          
         }
         this.selectedPo = '';
-        //this.selectedHeat = '';
         this.loadingService.setLoading(false);
       },
       (err: HttpErrorResponse): void => {
@@ -116,40 +115,15 @@ export class OrdersInfoComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  showPOSearch() {
-    this.ref = this.dialogService.open(SearchModalComponent, {
-      header: 'Search PO Number',
+  search(searchType: string){
+    this.searchType = searchType;
+    this.filterdColumn = searchType === 'poNumber' ?  'PONO' : 'HEAT';
+    const componnet = searchType === 'poNumber' ?  SearchModalComponent : LocationSearchModalComponent;
+    this.ref = this.dialogService.open(componnet, {
+      header: searchType === 'poNumber' ? 'Search PO Number' : 'Search Heat Number',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
+      data: {searchLength: 30 , isPONumber: searchType === 'poNumber' ?  true : false}
     });
-  }
-
-  // showHeatSearch() {
-  //   this.ref = this.dialogService.open(SearchModalComponent, {
-  //     header: 'Search Heat Number',
-  //     contentStyle: { overflow: 'auto' },
-  //     baseZIndex: 10000,
-  //   });
-  // }
-
-
-  next() {
-    this.first = this.first + this.rows;
-  }
-
-  prev() {
-    this.first = this.first - this.rows;
-  }
-
-  reset() {
-    this.first = 0;
-  }
-
-  isLastPage(): boolean {
-    return this.orders ? this.first === this.orders.length - this.rows : true;
-  }
-
-  isFirstPage(): boolean {
-    return this.orders ? this.first === 0 : true;
   }
 }

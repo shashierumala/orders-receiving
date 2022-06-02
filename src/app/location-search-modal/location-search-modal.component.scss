@@ -10,7 +10,7 @@
 }
 
 .grid-container {
-    //display: grid;
+    display: flex;
     grid-template-columns: auto auto auto;
     column-gap: 4px;
     row-gap:4px ;

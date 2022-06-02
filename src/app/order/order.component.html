@@ -20,16 +20,15 @@
   </div>
 </div>
 <p-divider></p-divider>
-<div class="displayView">
-  <div>
-    <h2 style="font-weight: lighter;">HEAT {{selectedOrder?.HEAT}}</h2>
-  </div>
-  <div>
-    <h2 style="font-weight: lighter;">MILL_NO {{selectedOrder?.MILL_NO}}</h2>
-  </div>
+<div style="display: flex; justify-content: center">
+  <h2 class="descColor">HEAT {{selectedOrder?.HEAT}}</h2>
 </div>
 <p-divider></p-divider>
-<div style="text-align: center;">
+  <div style="text-align: center;">
+    <h2 style="font-weight: lighter;">MILL_NO {{selectedOrder?.MILL_NO}}</h2>
+  </div>
+<p-divider></p-divider>
+<div style="display: flex; justify-content: center">
   <h2 class="descColor">{{selectedOrder?.DESC}}</h2>
 </div>
 <p-divider></p-divider>

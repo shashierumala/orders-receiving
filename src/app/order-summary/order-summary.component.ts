@@ -112,6 +112,10 @@ export class OrderSummaryComponent implements OnInit {
       });
   }
 
+  updateTag(){
+
+  }
+
   updateLength(length: any) {
     if (length) {
       this.loadingService.setLoading(true);
@@ -193,7 +197,9 @@ export class OrderSummaryComponent implements OnInit {
           ? 'Change Width'
           : 'pieces'
           ? 'Change Pieces'
-          : 'Change Racking Location',
+          : 'loc'
+          ? 'Change Racking Location'
+          : ' Split Tag',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
     });
@@ -204,8 +210,11 @@ export class OrderSummaryComponent implements OnInit {
         this.updateWidth(val);
       } else if (type === 'pieces') {
         this.updatePieces(val);
-      } else {
+      } else if (type === 'loc') {
         this.onUpdateClick(val);
+      }
+      else {
+        this.updateTag();
       }
     });
   }
@@ -251,6 +260,18 @@ export class OrderSummaryComponent implements OnInit {
     });
     this.ref.onClose.subscribe((val) => {
       this.onUpdateClick(val);
+    });
+  }
+
+  
+  splitTag() {
+    this.ref = this.dialogService.open(SearchModalComponent, {
+      header: 'Split Tag',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+    });
+    this.ref.onClose.subscribe((val) => {
+      this.updateTag();
     });
   }
 

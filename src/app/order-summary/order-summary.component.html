@@ -23,49 +23,50 @@
               <span class="textStyle">{{selectedOrder?.ITEM}}</span>
             </div>
             <div>
-              <span clasdths="textStyle">Tag </span>
+              <span class="textStyle">Tag </span>
               <span class="textStyle">{{selectedOrder?.TAG}}</span>
             </div>
-            <div style="float:right;">
+            <div class="printTagStyle">
               <p-button (click)="onSubmit()">Print Inventory Tag</p-button>
             </div>
           </div>
           <p-divider></p-divider>
-          <div class="displayView">
-            <div>
-              <h2 style="font-weight: lighter;">HEAT {{selectedOrder?.HEAT}}</h2>
-            </div>
-            <div>
-              <h2 style="font-weight: lighter;">MILL_NO {{selectedOrder?.MILL_NO}}</h2>
-            </div>
+          <div style="display: flex; justify-content: center">
+            <h4 class="descColor">HEAT {{selectedOrder?.HEAT}}</h4>
           </div>
           <p-divider></p-divider>
-          <div style="text-align: center;">
-            <h2 style="color:white; background-color: #004990;">{{selectedOrder?.DESC}}</h2>
+            <div style="text-align: center;">
+              <h4 style="font-weight: lighter;">MILL_NO {{selectedOrder?.MILL_NO}}</h4>
+            </div>
+          <p-divider></p-divider>
+          <div style="display: flex; justify-content: center">
+            <h4 class="descColor">{{selectedOrder?.DESC}}</h4>
           </div>
           <p-divider></p-divider>
-          <div class="displayView">
-            <div>
-              <span class="textStyle">Tag Qty </span>
-              <span class="textStyle">{{selectedOrder?.TAG_QTY}} {{selectedOrder?.UOM}}</span>
-            </div>
             <div class="lineSpace">
-              <span class="textStyle">Pieces </span>
-              <span class="textStyle">{{selectedOrder?.PCS}}</span>
-              <span style="padding-left:2rem; float:right;">
+              <div class="locationGrid">
+              <span class="textStyle">Tag Qty {{selectedOrder?.TAG_QTY}} {{selectedOrder?.UOM}}</span>
+              <span>
+                <button pButton (click)="splitTag()">Split Tag</button>
+              </span>
+              </div>
+            </div>
+            <p-divider></p-divider>
+            <div class="displayView">
+            <div class="lineSpace">
+              <span class="textStyle">Pieces: {{selectedOrder?.PCS}}</span>
+              <span style="float:right;">
                 <button pButton type="button" (click)="changePieces()">Change Pieces</button>
               </span>
             </div>
             <div class="lineSpace">
-              <span class="textStyle">LENGTH: </span>
-              <span class="textStyle">{{selectedOrder?.LENGTH}}</span>
+              <span class="textStyle">LENGTH: {{selectedOrder?.LENGTH}}</span>
               <span style="float:right;">
                 <button pButton type="button" (click)="changeLength()">Change Length</button>
               </span>
             </div>
             <div class="lineSpace">
-              <span class="textStyle">WIDTH: </span>
-              <span class="textStyle">{{selectedOrder?.WIDTH}}</span>
+              <span class="textStyle">WIDTH: {{selectedOrder?.WIDTH}}</span>
               <span style="float:right;">
                 <button pButton type="button" (click)="changeWidth()">Change Width</button>
               </span>
@@ -85,7 +86,7 @@
           <div>
             <div class="locationGrid">
               <span class="contentTextStyle">LOC {{selectedOrder?.LOC}}</span>
-              <span style="padding-top: 16px;">
+              <span>
                 <p-button (click)="changeLocation()">Change Racking Location</p-button>
               </span>
             </div>
@@ -93,7 +94,7 @@
               <div style="padding-top: 24px;">
                 <h3 style="font-weight: lighter;">REC_DATE {{selectedOrder?.REC_DATE}}</h3>
               </div>
-              <div>
+              <div style="padding-top: 8px;">
                 <span class="contentTextStyle">Status {{selectedOrder?.STATUS}}</span>
               </div>
             </div>

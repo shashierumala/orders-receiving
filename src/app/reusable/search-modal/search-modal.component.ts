@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { OrdersService } from '../../services/orders.service';
 
 @Component({
@@ -10,7 +10,13 @@ import { OrdersService } from '../../services/orders.service';
 export class SearchModalComponent implements OnInit {
   value = '';
   errorMessage!: string;
-  constructor(private orderService: OrdersService, private  ref: DynamicDialogRef) {}
+  isPoNumber = false;
+  constructor(private orderService: OrdersService, private  ref: DynamicDialogRef, private config: DynamicDialogConfig) {
+    const poNum = config?.data?.isPONumber;
+    if(poNum){
+      this.isPoNumber = true;
+    }
+  }
 
   ngOnInit(): void {
   }
