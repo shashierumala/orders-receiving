@@ -123,10 +123,11 @@ export class OrdersService {
   }
 
   sendStatus(sts: string) {
-    const dist = `${this.selectedEmployee.EMPDIST}`;
-    const add_user = `${this.selectedEmployee.EMPID}`;
+    const dist = localStorage.getItem('DIST');
+    const add_user = localStorage.getItem('EmployeeID');
+    const systemName = localStorage.getItem('EMPSystemName');
     const requestObject = {
-      systemName: this.selectedEmployee.EMPSystemName,
+      systemName,
       dist,
       item: this.selectedOrder.ITEM,
       tag: this.selectedOrder.TAG?.trim(),

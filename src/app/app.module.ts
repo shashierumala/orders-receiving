@@ -35,6 +35,8 @@ import { LoadingComponent } from './loading/loading.component';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { SearchModalComponent } from './reusable/search-modal/search-modal.component';
 import { LocationSearchModalComponent } from './location-search-modal/location-search-modal.component';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -68,6 +70,7 @@ import { LocationSearchModalComponent } from './location-search-modal/location-s
     DataViewModule,
     ToastModule,
     SplitterModule,
+    ConfirmDialogModule,
     //NgIdleModule.forRoot(),
     BrowserAnimationsModule,
     ProgressSpinnerModule,
@@ -76,6 +79,7 @@ import { LocationSearchModalComponent } from './location-search-modal/location-s
   providers: [
     DialogService,
     OrdersService,
+    ConfirmationService,
     AuthService,
     TokenStorageService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

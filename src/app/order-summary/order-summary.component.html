@@ -1,6 +1,7 @@
 <p-toolbar>
   <p-button type="button" lable="back" icon="pi pi-arrow-left" (click)="back()"></p-button>
   <button pButton type="button" label="refresh" icon="pi pi-refresh" (click)="refresh()"></button>
+  <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
   <p-button (click)="updateStatus()">Finish Receiving</p-button>
 </p-toolbar>
 <p-toast position="top-center"></p-toast>
@@ -31,21 +32,21 @@
             </div>
           </div>
           <p-divider></p-divider>
-          <div style="display: flex; justify-content: center">
-            <h4 class="descColor">HEAT {{selectedOrder?.HEAT}}</h4>
+          <div style="text-align: center;">
+            <h2 class="descColor">HEAT {{selectedOrder?.HEAT}}</h2>
           </div>
           <p-divider></p-divider>
           <div style="text-align: center;">
             <h4 style="font-weight: lighter;">MILL_NO {{selectedOrder?.MILL_NO}}</h4>
           </div>
           <p-divider></p-divider>
-          <div style="display: flex; justify-content: center">
+          <div style="text-align: center;">
             <h4 class="descColor">{{selectedOrder?.DESC}}</h4>
           </div>
           <p-divider></p-divider>
           <div class="lineSpace">
             <div class="locationGrid">
-              <span class="textStyle">Tag Qty {{selectedOrder?.TAG_QTY}} {{selectedOrder?.UOM}}</span>
+              <span class="textStyle" style="padding-top: 0.5rem;">Tag Qty {{selectedOrder?.TAG_QTY}} {{selectedOrder?.UOM}}</span>
               <span>
                 <button pButton (click)="splitTag()">Split Tag</button>
               </span>
@@ -60,13 +61,13 @@
               </span>
             </div>
             <div class="lineSpace">
-              <span class="textStyle">LENGTH: {{selectedOrder?.LENGTH}}</span>
+              <span class="textStyle">Length: {{selectedOrder?.LENGTH}}</span>
               <span style="float:right;">
                 <button pButton type="button" (click)="changeLength()">Change Length</button>
               </span>
             </div>
             <div class="lineSpace">
-              <span class="textStyle">WIDTH: {{selectedOrder?.WIDTH}}</span>
+              <span class="textStyle">Width: {{selectedOrder?.WIDTH}}</span>
               <span style="float:right;">
                 <button pButton type="button" (click)="changeWidth()">Change Width</button>
               </span>
@@ -75,7 +76,7 @@
           <div>
           </div>
           <p-divider></p-divider>
-          <div style="text-align:left;">
+          <div style="text-align:center;">
             <h3 style="font-weight: lighter;">VENDOR {{selectedOrder?.VENDOR}}</h3>
           </div>
           <p-divider></p-divider>

@@ -4,7 +4,7 @@ import { OrdersService } from '../services/orders.service';
 import { Order } from '../orders';
 import { EmployeeInfo } from '../employee';
 import { HttpErrorResponse } from '@angular/common/http';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { SearchModalComponent } from '../reusable/search-modal/search-modal.component';
 import { AppLoadingService } from '../services/app-loading.service';
@@ -40,7 +40,8 @@ export class OrderSummaryComponent implements OnInit {
     private orderService: OrdersService,
     private messageService: MessageService,
     private dialogService: DialogService,
-    private loadingService: AppLoadingService
+    private loadingService: AppLoadingService,
+    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit(): void {
@@ -280,8 +281,8 @@ export class OrderSummaryComponent implements OnInit {
       this.selectedOrder = [];
       this.orderService.sendStatus('1').subscribe(
         (data) => {
+          this.confirm();
           this.loadingService.setLoading(false);
-          this.router.navigateByUrl('order-info');
         },
         (err: HttpErrorResponse): void => {
           this.loadingService.setLoading(false);
@@ -296,5 +297,22 @@ export class OrderSummaryComponent implements OnInit {
         detail: 'Please Change Racking Location',
       });
     }
+  }
+
+  confirm(){
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to finish receving ?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+          this.messageService.add({severity:'info', summary:'Confirmed', detail:'Finished Receving'});
+          this.router.navigateByUrl('order-info');
+      },
+      reject: () => {
+          this.messageService.add({severity:'error', summary:'Rejected', detail:'Not proceeded further'});
+          this.loadOrder();
+      }
+  });
+  console.log('this is working');
   }
 }

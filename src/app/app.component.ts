@@ -26,9 +26,17 @@ export class AppComponent implements OnInit {
 
   onLogout(){
     localStorage.removeItem('EmployeeID');
+    localStorage.removeItem('DIST');
+    localStorage.removeItem('EMPSystemName')
     localStorage.removeItem('order-summary');
     localStorage.removeItem('order-Info');
     this.router.navigate(['/login'])
+  }
+
+  toggleButton() {
+    var element = document.body;
+    element.classList.toggle("dark-theme");
+      console.log('testing dark mode', element)
   }
 
 }
