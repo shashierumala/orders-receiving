@@ -18,7 +18,7 @@
         <button pButton type="button" label="2" (click)="empId = empId +'2'"></button>
         <button pButton type="button" label="3" (click)="empId = empId +'3'"></button>
         <button pButton type="button" label="0" (click)="empId = empId +'0'"></button>
-         <button pButton type="button" icon="pi pi-arrow-right" (click)="onSubmit()" [disabled]="!empId"></button>
+        <button pButton type="button" icon="pi pi-arrow-right" (click)="onSubmit()" [disabled]="!empId"></button>
       </div>
     </div>
     <br>
@@ -27,7 +27,7 @@
     </h3>
   </div>
   <div *ngIf="isShown" class="loginAlignmentStyle">
-    <h5 style="color:#004990; font-style:italic; text-align: center;">Select District</h5>
+    <h2 style="color:#004990; font-style:italic; text-align: center;">Select District</h2>
     <p-listbox [options]="empList" [(ngModel)]="selectedDist" optionLabel="EMPDIST" optionValue="EMPDIST"
       (onClick)="navigateToMain()" [listStyle]="{'width':'15rem'}"></p-listbox>
   </div>

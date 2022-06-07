@@ -1,5 +1,5 @@
-.Container{
-  border:1px solid #004990;
+.Container {
+  border: 1px solid #004990;
   border-radius: 5px;
 }
 
@@ -13,18 +13,18 @@
 }
 
 .width {
-  padding:0px 8px
+  padding: 0px 8px
 }
 
-.descColor{
-  color:white; 
+.descColor {
+  color: white;
   background-color: #004990;
-  padding:0px 12px;
+  padding: 0px 12px;
 }
 
 .displayView {
-  justify-content:space-between; 
-  display:flex; 
+  justify-content: space-between;
+  display: flex;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -43,6 +43,6 @@
 }
 
 .contentTextStyle {
-    font-size: 48px;
-    font-weight: bold;
-  }
+  font-size: 48px;
+  font-weight: bold;
+}

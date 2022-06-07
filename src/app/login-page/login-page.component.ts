@@ -17,7 +17,7 @@ export class LoginPageComponent implements OnInit {
 
   empList: any[] = [];
   selectedDist!: string;
-  selectedSystemName!:string;
+  selectedSystemName!: string;
   errorHandler: any;
   errorMessage: any;
   isShown: boolean = false;
@@ -52,7 +52,7 @@ export class LoginPageComponent implements OnInit {
         (err: HttpErrorResponse): void => {
           this.loadingService.setLoading(false);
           this.isLoading = false;
-          this.empId ='';
+          this.empId = '';
           this.errorHandler.handleError(err);
         }
       );
@@ -79,7 +79,10 @@ export class LoginPageComponent implements OnInit {
     )[0];
     this.orderService.selectedDist = this.selectedDist;
     localStorage.setItem('DIST', this.selectedDist);
-    localStorage.setItem('EMPSystemName',this.orderService.selectedEmployee.EMPSystemName);
+    localStorage.setItem(
+      'EMPSystemName',
+      this.orderService.selectedEmployee.EMPSystemName
+    );
     this.router.navigateByUrl('order-info');
   }
 

@@ -112,9 +112,7 @@ export class OrderSummaryComponent implements OnInit {
       });
   }
 
-  updateTag(){
-
-  }
+  updateTag() {}
 
   updateLength(length: any) {
     if (length) {
@@ -212,8 +210,7 @@ export class OrderSummaryComponent implements OnInit {
         this.updatePieces(val);
       } else if (type === 'loc') {
         this.onUpdateClick(val);
-      }
-      else {
+      } else {
         this.updateTag();
       }
     });
@@ -263,7 +260,6 @@ export class OrderSummaryComponent implements OnInit {
     });
   }
 
-  
   splitTag() {
     this.ref = this.dialogService.open(SearchModalComponent, {
       header: 'Split Tag',

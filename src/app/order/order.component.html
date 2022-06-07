@@ -1,7 +1,7 @@
 <div class="displayView">
   <div class="width">
     <span class="textStyle">PO </span>
-    <span  class="textStyle">{{selectedOrder?.PONO}}</span>
+    <span class="textStyle">{{selectedOrder?.PONO}}</span>
   </div>
   <div class="width">
     <span class="textStyle">Line </span>
@@ -16,7 +16,7 @@
     <span class="textStyle">{{selectedOrder?.TAG}}</span>
   </div>
   <div style="float:right;">
-      <p-button lable="Select Order Summary" (click)="selectOrder(selectedOrder)">Select TAG</p-button>
+    <p-button lable="Select Order Summary" (click)="selectOrder(selectedOrder)">Select TAG</p-button>
   </div>
 </div>
 <p-divider></p-divider>
@@ -24,9 +24,9 @@
   <h2 class="descColor">HEAT {{selectedOrder?.HEAT}}</h2>
 </div>
 <p-divider></p-divider>
-  <div style="text-align: center;">
-    <h2 style="font-weight: lighter;">MILL_NO {{selectedOrder?.MILL_NO}}</h2>
-  </div>
+<div style="text-align: center;">
+  <h2 style="font-weight: lighter;">MILL_NO {{selectedOrder?.MILL_NO}}</h2>
+</div>
 <p-divider></p-divider>
 <div style="display: flex; justify-content: center">
   <h2 class="descColor">{{selectedOrder?.DESC}}</h2>

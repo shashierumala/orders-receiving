@@ -1,25 +1,27 @@
 <div class="card">
-  <p-dataView #dv [value]="orders" [paginator]="true" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-   [rows]="noOfPages" [paginatorPosition]="'both'" (onPage)="paginate($event)" filterBy="{{filterdColumn}}" layout="grid">
+  <p-dataView #dv [value]="orders" [paginator]="true" [showCurrentPageReport]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rows]="noOfPages"
+    [paginatorPosition]="'both'" (onPage)="paginate($event)" filterBy="{{filterdColumn}}" layout="grid">
     <ng-template pTemplate="header">
       <div class="p-d-flex p-flex-md-row p-jc-md-between">
         <button pButton type="button" label="refresh" [loading]="loading" icon="pi pi-refresh"
           (click)="refresh()"></button>
-             <h4 style="display:flex; padding-right:1rem" *ngIf="selectedPo !== '' && searchType === 'heatNumber'">
-        Search Results for Heat Number:
-          <h3
-            style="padding-left:1rem;font-weight:bold;"> {{selectedPo}}</h3>
+        <h4 style="display:flex; padding-right:1rem" *ngIf="selectedPo !== '' && searchType === 'heatNumber'">
+          Search Results for Heat Number:
+          <h3 style="padding-left:1rem;font-weight:bold;"> {{selectedPo}}</h3>
         </h4>
-        <h4 style="display:flex; padding-right:1rem" *ngIf="selectedPo !== '' && searchType === 'poNumber'">
-         Search Results for PO Number:
-           <h3
-             style="padding-left:1rem;font-weight:bold;"> {{selectedPo}}</h3>
-         </h4>
+        <h4 style="display:flex; padding-right:1rem; padding-top:1rem;"
+          *ngIf="selectedPo !== '' && searchType === 'poNumber'">
+          Search Results for PO Number:
+          <h3 style="padding-left:1rem;font-weight:bold;"> {{selectedPo}}</h3>
+        </h4>
         <span class="p-input-icon-left p-mb-2 p-mb-md-0">
-          <button pButton type="button" label="Enter PO Number" icon="pi pi-addition" (click)="search('poNumber')"> </button>
+          <button pButton type="button" label="Enter PO Number" icon="pi pi-addition" (click)="search('poNumber')">
+          </button>
         </span>
         <span class="p-input-icon-left p-mb-2 p-mb-md-0">
-          <button pButton type="button" label="Enter Heat Number" icon="pi pi-addition" (click)="search('heatNumber')"> </button>
+          <button pButton type="button" label="Enter Heat Number" icon="pi pi-addition" (click)="search('heatNumber')">
+          </button>
         </span>
       </div>
     </ng-template>

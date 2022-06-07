@@ -5,26 +5,28 @@ import { OrdersService } from '../services/orders.service';
 @Component({
   selector: 'app-location-search-modal',
   templateUrl: './location-search-modal.component.html',
-  styleUrls: ['./location-search-modal.component.scss']
+  styleUrls: ['./location-search-modal.component.scss'],
 })
 export class LocationSearchModalComponent implements OnInit {
-   
   value = '';
   errorMessage!: string;
   lengthValue = 7;
-  constructor(private orderService: OrdersService, private  ref: DynamicDialogRef, config: DynamicDialogConfig) {
+  constructor(
+    private orderService: OrdersService,
+    private ref: DynamicDialogRef,
+    config: DynamicDialogConfig
+  ) {
     const length = config?.data?.searchLength;
-    if(length){
-      this.lengthValue = length
+    if (length) {
+      this.lengthValue = length;
     }
-   }
-
-  ngOnInit(): void {
   }
-  
+
+  ngOnInit(): void {}
+
   onSubmit() {
     this.orderService.searchValue.next(this.value);
-    this.ref.close(this.value)
+    this.ref.close(this.value);
   }
   clear() {
     this.value = '';

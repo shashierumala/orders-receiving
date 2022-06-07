@@ -9,10 +9,10 @@
 }
 
 .displayView {
-    justify-content:space-between; 
-    display:flex; 
-    align-items: center; 
-    flex-wrap: wrap;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .ContentGridStyle {
@@ -27,12 +27,12 @@
   color: black;
   overflow: auto;
 }
-@media (min-device-width:768px)
-and (max-device-width: 1024px)  { 
+
+@media (min-device-width:768px) and (max-device-width: 1024px) {
   .ContentGridStyle {
     width: 100%;
-   }
- }
+  }
+}
 
 .locationButtonStyle {
   padding: 8px 24px 8px 4rem;
@@ -40,7 +40,7 @@ and (max-device-width: 1024px)  {
 }
 
 .buttonStyle {
-    padding:5rem 2rem;
+  padding: 5rem 2rem;
 }
 
 .display {
@@ -55,24 +55,23 @@ and (max-device-width: 1024px)  {
   padding: 12px 8px;
 }
 
-@media (min-device-width:768px) { 
+@media (min-device-width:768px) {
   .lineSpace {
     width: 100%;
-   }
- }
+  }
+}
 
- .printTagStyle{
-  display: flex; 
+.printTagStyle {
+  display: flex;
   justify-content: right;
- }
+}
 
- @media (min-device-width:768px)
-and (max-device-width: 1024px) { 
+@media (max-device-width:768px) {
   .printTagStyle {
     margin-left: auto;
     margin-top: 1rem;
-   }
- }
+  }
+}
 
 
 .grid-container {
@@ -106,10 +105,11 @@ and (max-device-width: 1024px) {
   font-size: 24px;
   font-weight: bold;
 }
-.descColor{
-  color:white; 
+
+.descColor {
+  color: white;
   background-color: #004990;
-  padding:0px 12px;
+  padding: 0px 12px;
 }
 
 .contentTextStyle {
@@ -127,11 +127,11 @@ and (max-device-width: 1024px) {
 }
 
 .p-button {
-  width:10rem;
-  display: block ;
+  width: 10rem;
+  display: block;
 }
 
 .locationGrid {
-  display: flex; 
+  display: flex;
   justify-content: space-between;
 }

@@ -35,24 +35,24 @@
             <h4 class="descColor">HEAT {{selectedOrder?.HEAT}}</h4>
           </div>
           <p-divider></p-divider>
-            <div style="text-align: center;">
-              <h4 style="font-weight: lighter;">MILL_NO {{selectedOrder?.MILL_NO}}</h4>
-            </div>
+          <div style="text-align: center;">
+            <h4 style="font-weight: lighter;">MILL_NO {{selectedOrder?.MILL_NO}}</h4>
+          </div>
           <p-divider></p-divider>
           <div style="display: flex; justify-content: center">
             <h4 class="descColor">{{selectedOrder?.DESC}}</h4>
           </div>
           <p-divider></p-divider>
-            <div class="lineSpace">
-              <div class="locationGrid">
+          <div class="lineSpace">
+            <div class="locationGrid">
               <span class="textStyle">Tag Qty {{selectedOrder?.TAG_QTY}} {{selectedOrder?.UOM}}</span>
               <span>
                 <button pButton (click)="splitTag()">Split Tag</button>
               </span>
-              </div>
             </div>
-            <p-divider></p-divider>
-            <div class="displayView">
+          </div>
+          <p-divider></p-divider>
+          <div class="displayView">
             <div class="lineSpace">
               <span class="textStyle">Pieces: {{selectedOrder?.PCS}}</span>
               <span style="float:right;">

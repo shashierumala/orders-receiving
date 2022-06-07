@@ -1,4 +1,11 @@
-import { Component, OnInit, ElementRef, ViewChild, Input, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ElementRef,
+  ViewChild,
+  Input,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { OrdersService } from '../services/orders.service';
 import { Order } from '../orders';
 import { Table } from 'primeng/table';
@@ -28,7 +35,7 @@ export class OrdersInfoComponent implements OnInit {
   loading = true;
   errorMessage: string = '';
   selectedDist!: string;
-  myPaginationString:string ='';
+  myPaginationString: string = '';
   searchType = '';
   noOfPages = 20;
   @ViewChild('dv') table!: Table;
@@ -37,7 +44,7 @@ export class OrdersInfoComponent implements OnInit {
   ref!: DynamicDialogRef;
   selectedPo = '';
   filterdColumn = 'HEAT';
-  
+
   constructor(
     private router: Router,
     private ordersService: OrdersService,
@@ -58,7 +65,6 @@ export class OrdersInfoComponent implements OnInit {
       if (val !== '') {
         this.selectedPo = val;
         if (this.table) {
-  
           this.table.filter(val, 'equals', 'equals');
         }
         if (this.ref) {
@@ -72,31 +78,30 @@ export class OrdersInfoComponent implements OnInit {
     this.selectedPo = '';
     this.loading = true;
     this.getOrdersInfo();
-
   }
 
-  paginate(event:any) {
-    window.scrollTo(0,0);
-}
+  paginate(event: any) {
+    window.scrollTo(0, 0);
+  }
   getOrdersInfo() {
     this.orders = [];
     this.loadingService.setLoading(true);
     this.ordersService.getOrders().subscribe(
       (res) => {
         this.orders = res.data;
-        this.orders.forEach((obj: any)=>{
-          Object.keys(obj).map(k => obj[k] = typeof obj[k] == 'string' ? obj[k].trim() : obj[k]);
-        })
+        this.orders.forEach((obj: any) => {
+          Object.keys(obj).map(
+            (k) => (obj[k] = typeof obj[k] == 'string' ? obj[k].trim() : obj[k])
+          );
+        });
         if (this.orders.length > 0) {
           const col = Object.keys(this.orders[0]);
           this.cols = col;
-          this.filterdColumn = 'PONO'
+          this.filterdColumn = 'PONO';
           this.table.filter('', 'equals', 'equals');
           this.noOfPages = 20;
-          this.table.filteredValue = this.orders
+          this.table.filteredValue = this.orders;
           this.loading = false;
-
-          
         }
         this.selectedPo = '';
         this.loadingService.setLoading(false);
@@ -115,15 +120,22 @@ export class OrdersInfoComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  search(searchType: string){
+  search(searchType: string) {
     this.searchType = searchType;
-    this.filterdColumn = searchType === 'poNumber' ?  'PONO' : 'HEAT';
-    const componnet = searchType === 'poNumber' ?  SearchModalComponent : LocationSearchModalComponent;
+    this.filterdColumn = searchType === 'poNumber' ? 'PONO' : 'HEAT';
+    const componnet =
+      searchType === 'poNumber'
+        ? SearchModalComponent
+        : LocationSearchModalComponent;
     this.ref = this.dialogService.open(componnet, {
-      header: searchType === 'poNumber' ? 'Search PO Number' : 'Search Heat Number',
+      header:
+        searchType === 'poNumber' ? 'Search PO Number' : 'Search Heat Number',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
-      data: {searchLength: 30 , isPONumber: searchType === 'poNumber' ?  true : false}
+      data: {
+        searchLength: 30,
+        isPONumber: searchType === 'poNumber' ? true : false,
+      },
     });
   }
 }

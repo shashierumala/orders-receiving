@@ -14,7 +14,7 @@ export class OrderComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  selectOrder(data:any) {
+  selectOrder(data: any) {
     this.router.navigate(['order-summary/api/receiving'], {
       queryParams: { dist: data.DIST, item: data.ITEM, tag: data.TAG },
     });
