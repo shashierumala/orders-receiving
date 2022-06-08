@@ -38,6 +38,9 @@ export class OrdersInfoComponent implements OnInit {
   myPaginationString: string = '';
   searchType = '';
   noOfPages = 20;
+  printValue =1;
+  pono : any;
+  Tag_Comment: any;
   @ViewChild('dv') table!: Table;
   @ViewChild('filter') filter!: ElementRef;
 
@@ -83,6 +86,10 @@ export class OrdersInfoComponent implements OnInit {
   paginate(event: any) {
     window.scrollTo(0, 0);
   }
+
+  rackPrintLabel(){
+
+  }
   getOrdersInfo() {
     this.orders = [];
     this.loadingService.setLoading(true);
@@ -118,6 +125,26 @@ export class OrdersInfoComponent implements OnInit {
     localStorage.removeItem('EmployeeID');
     localStorage.removeItem('DIST');
     this.router.navigate(['/login']);
+  }
+
+  addTagRackingLocation() {
+    this.ref = this.dialogService.open(LocationSearchModalComponent, {
+      header: 'Enter Racking Location',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+    });
+    this.ref.onClose.subscribe((val) => {
+    });
+  }
+
+  addTagComment() {
+    this.ref = this.dialogService.open(LocationSearchModalComponent, {
+      header: 'Tag_Comment',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+    });
+    this.ref.onClose.subscribe((val) => {
+    });
   }
 
   search(searchType: string) {

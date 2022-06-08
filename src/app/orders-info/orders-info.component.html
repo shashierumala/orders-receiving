@@ -1,27 +1,31 @@
 <div class="card">
   <p-dataView #dv [value]="orders" [paginator]="true" [showCurrentPageReport]="true"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rows]="noOfPages"
-    [paginatorPosition]="'both'" (onPage)="paginate($event)" filterBy="{{filterdColumn}}" layout="grid">
+    [paginatorPosition]="'both'" (onPage)="paginate($event)" filterBy="{{ filterdColumn }}" layout="grid">
     <ng-template pTemplate="header">
       <div class="p-d-flex p-flex-md-row p-jc-md-between">
         <button pButton type="button" label="refresh" [loading]="loading" icon="pi pi-refresh"
           (click)="refresh()"></button>
-        <h4 style="display:flex; padding-right:1rem" *ngIf="selectedPo !== '' && searchType === 'heatNumber'">
+        <h4 style="display: flex; padding-right: 1rem" *ngIf="selectedPo !== '' && searchType === 'heatNumber'">
           Search Results for Heat Number:
-          <h3 style="padding-left:1rem;font-weight:bold;"> {{selectedPo}}</h3>
+          <h3 style="padding-left: 1rem; font-weight: bold">
+            {{ selectedPo }}
+          </h3>
         </h4>
-        <h4 style="display:flex; padding-right:1rem; padding-top:1rem;"
+        <h4 style="display: flex; padding-right: 1rem; padding-top: 1rem"
           *ngIf="selectedPo !== '' && searchType === 'poNumber'">
           Search Results for PO Number:
-          <h3 style="padding-left:1rem;font-weight:bold;"> {{selectedPo}}</h3>
+          <h3 style="padding-left: 1rem; font-weight: bold">
+            {{ selectedPo }}
+          </h3>
         </h4>
         <span class="p-input-icon-left p-mb-2 p-mb-md-0">
-          <button pButton type="button" label="Enter PO Number" icon="pi pi-addition" (click)="search('poNumber')">
-          </button>
+          <button pButton type="button" label="Enter PO Number" icon="pi pi-addition"
+            (click)="search('poNumber')"></button>
         </span>
         <span class="p-input-icon-left p-mb-2 p-mb-md-0">
-          <button pButton type="button" label="Enter Heat Number" icon="pi pi-addition" (click)="search('heatNumber')">
-          </button>
+          <button pButton type="button" label="Enter Heat Number" icon="pi pi-addition"
+            (click)="search('heatNumber')"></button>
         </span>
       </div>
     </ng-template>
@@ -35,3 +39,26 @@
       </div>
     </ng-template>
   </p-dataView>
+  <div class="locationGrid" *ngIf="selectedPo !== '' && searchType === 'poNumber'">
+    <h4 style="display: flex; padding-right: 1rem;">
+      No Tags Found Please Enter Temp Storage Location:
+      <h3 style="padding-left: 1rem; padding-bottom: 0.5rem; font-weight: bold">
+        {{ selectedPo }}
+      </h3>
+    </h4>
+    <div class="buttonDiv">
+      <h5 class="textTag">Enter Racking Location</h5>
+      <input (click)="addTagRackingLocation()" type="text" [(ngModel)]="pono" pInputText />
+    </div>
+    <div class="buttonDiv">
+      <h5 class="textTag">Comment</h5>
+      <textarea [rows]="5" [cols]="30" type="text" (click)=" addTagComment()" [(ngModel)]="Tag_Comment" pInputTextarea
+        autoResize="autoResize"></textarea>
+    </div>
+    <div class="buttonDiv">
+      <h5 class="textTag">No of prints</h5>
+      <p-inputNumber [(ngModel)]="printValue" mode="decimal" [showButtons]="true" [min]="0" [max]="100"></p-inputNumber>
+    </div>
+    <button pButton type="button" label="Rack & Print Label" (click)="rackPrintLabel()"></button>
+  </div>
+</div>

@@ -1,10 +1,10 @@
 .ContentViewStyle {
-  border: 1px solid #004990;
+  border: 1px solid var(--color-primary);
   border-radius: 5px;
-  background-color: white;
+  background-color:var( --color-white);
   margin: 1rem auto;
   padding: 0.5rem;
-  box-shadow: 8px 8px 8px #888888;
+  box-shadow: 8px 8px 8px var(--color-grey-dark);
   gap: 10px;
 }
 
@@ -17,14 +17,14 @@
 
 .ContentGridStyle {
   width: 75%;
-  border: 1px solid #004990;
+  border: 1px solid var(--color-primary);
   border-radius: 5px;
   padding: 0.5rem;
   gap: 10px;
   margin: 1rem auto;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  background-color: white;
-  color: black;
+  background-color: var( --color-white);
+  color:var(--color-black);
   overflow: auto;
 }
 
@@ -78,7 +78,7 @@
   display: flex;
   grid-template-columns: auto auto auto auto;
   gap: 10px;
-  background-color: #f5f5f5;
+  background-color:var( --color-white);
   padding: 10px;
 }
 
@@ -107,8 +107,8 @@
 }
 
 .descColor {
-  color: white;
-  background-color: #004990;
+  color:var( --color-white);
+  background-color:var(--color-primary);
 }
 
 .contentTextStyle {

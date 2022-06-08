@@ -28,3 +28,22 @@
 .p-d-flex {
   flex-wrap: wrap;
 }
+
+.locationGrid {
+  padding: 24px;
+  display: grid;
+  justify-items: center;
+  background-color: #ffa9f6;
+  width:75%;
+  margin:1rem auto;
+}
+
+.buttonDiv {
+  padding-right: 0.5rem; 
+  padding-top: 1rem
+}
+
+.textTag {
+ padding-left: 1rem; 
+ padding-bottom: 0.5rem;
+}

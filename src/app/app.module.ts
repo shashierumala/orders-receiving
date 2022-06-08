@@ -37,6 +37,7 @@ import { SearchModalComponent } from './reusable/search-modal/search-modal.compo
 import { LocationSearchModalComponent } from './location-search-modal/location-search-modal.component';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import {ConfirmationService} from 'primeng/api';
     DialogModule,
     DividerModule,
     CardModule,
+    InputTextareaModule,
     InputNumberModule,
     DataViewModule,
     ToastModule,

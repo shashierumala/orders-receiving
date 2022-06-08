@@ -12,12 +12,12 @@
   grid-template-columns: auto auto auto;
   column-gap: 4px;
   row-gap: 4px;
-  background-color: white;
+  background-color: var(--color-white);
   padding: 4px;
 }
 
 .grid-container>button {
-  background-color: #004990;
+  background-color: var(--color-primary);
   text-align: center;
   font-size: 30px;
 }

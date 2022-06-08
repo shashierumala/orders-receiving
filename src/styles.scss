@@ -13,6 +13,7 @@
     --color-green: rgba(11, 124, 11, 0.911);
 
     --color-white: #fff;
+    --color-black: #000;
 
     --color-red: rgba(201, 20, 20, 0.802);
 
@@ -39,14 +40,14 @@ body {
       }
 
       &::-webkit-scrollbar-thumb {
-        background-color: #004990;
-        outline: 1px solid grey;
+        background-color:  var(--color-primary);
+        outline: 1px solid var(--color-grey-dark);
       }   
 }
 
 .p-listbox .p-listbox-list .p-listbox-item {
-    color:white;
-    background-color: #004990;
+    color: var( --color-white);
+    background-color: var(--color-primary);
     padding: 1.75rem 1.25rem;
     justify-content: center;
     font-size: 24px;
@@ -59,7 +60,7 @@ body {
 }
 
 .p-button{
-    background-color: #004990;
+    background-color: var(--color-primary);
 }
 
 .p-divider.p-divider-horizontal{
@@ -89,15 +90,15 @@ body {
   font-size: 2rem;
 }
 
-.p-inputtext.ng-touched{
-    background-color: #004990;
-    color:white;
-}
+// .p-inputtext.ng-touched{
+//     background-color: #004990;
+//     color:white;
+// }
 
-.dark-theme {
-    color: #eee;
-    background-color: #252222;
-    // --btn-txt-color: rgb(46, 43, 43);
-    --btn-bg-color: rgb(20, 211, 195);
-  }
+// .dark-theme {
+//     color: #eee;
+//     background-color: #252222;
+//     // --btn-txt-color: rgb(46, 43, 43);
+//     --btn-bg-color: rgb(20, 211, 195);
+//   }
 
