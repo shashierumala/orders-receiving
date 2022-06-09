@@ -71,6 +71,14 @@ export class OrdersService {
     });
   }
 
+
+  savePO(requestObject: any) {
+   
+    return this.http.post<any>(`${this.hostUrl}${this.locUrl}`, {
+      ...requestObject,
+    });
+  }
+
   sendLength(len: Number) {
     const dist = localStorage.getItem('DIST');
     const add_user = localStorage.getItem('EmployeeID');

@@ -14,7 +14,7 @@ export class LocationSearchModalComponent implements OnInit {
   constructor(
     private orderService: OrdersService,
     private ref: DynamicDialogRef,
-    config: DynamicDialogConfig
+   private  config: DynamicDialogConfig
   ) {
     const length = config?.data?.searchLength;
     if (length) {
@@ -25,7 +25,9 @@ export class LocationSearchModalComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    this.orderService.searchValue.next(this.value);
+    if(!this.config?.data?.isNewPO){
+      this.orderService.searchValue.next(this.value);
+    }
     this.ref.close(this.value);
   }
   clear() {

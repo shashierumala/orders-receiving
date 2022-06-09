@@ -1,5 +1,6 @@
 <div class="card">
-  <p-dataView #dv [value]="orders" [paginator]="true" [showCurrentPageReport]="true"
+  <div  >
+  <p-dataView #dv [value]="orders" [paginator]="filteredValueLength>0 ? true : false" [showCurrentPageReport]="true"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rows]="noOfPages"
     [paginatorPosition]="'both'" (onPage)="paginate($event)" filterBy="{{ filterdColumn }}" layout="grid">
     <ng-template pTemplate="header">
@@ -30,7 +31,7 @@
       </div>
     </ng-template>
     <ng-template let-order pTemplate="gridItem">
-      <div class="p-col-12">
+      <div class="p-col-12"  *ngIf="filteredValueLength>0">
         <div class="product-list-item">
           <div class="product-list-detail">
             <app-order [selectedOrder]="order"></app-order>
@@ -39,8 +40,9 @@
       </div>
     </ng-template>
   </p-dataView>
-  <div class="locationGrid" *ngIf="selectedPo !== '' && searchType === 'poNumber'">
-    <h4 style="display: flex; padding-right: 1rem;">
+</div>
+  <div class="locationGrid" *ngIf="(selectedPo !== '' && searchType === 'poNumber') && filteredValueLength ===0">
+    <h4 style="display: flex;">
       No Tags Found Please Enter Temp Storage Location:
       <h3 style="padding-left: 1rem; padding-bottom: 0.5rem; font-weight: bold">
         {{ selectedPo }}

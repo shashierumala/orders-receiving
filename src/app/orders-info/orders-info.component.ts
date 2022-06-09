@@ -43,10 +43,11 @@ export class OrdersInfoComponent implements OnInit {
   Tag_Comment: any;
   @ViewChild('dv') table!: Table;
   @ViewChild('filter') filter!: ElementRef;
-
+  filteredValueLength = 0;
   ref!: DynamicDialogRef;
   selectedPo = '';
   filterdColumn = 'HEAT';
+  emptyMessage = 'No Records Found'
 
   constructor(
     private router: Router,
@@ -67,8 +68,9 @@ export class OrdersInfoComponent implements OnInit {
     this.ordersService.searchValue.subscribe((val) => {
       if (val !== '') {
         this.selectedPo = val;
-        if (this.table) {
+        if (this.table && this.orders.length > 0) {
           this.table.filter(val, 'equals', 'equals');
+          this.filteredValueLength = this.table.filteredValue.length
         }
         if (this.ref) {
           this.ref.close();
@@ -88,6 +90,12 @@ export class OrdersInfoComponent implements OnInit {
   }
 
   rackPrintLabel(){
+    const requestObject = {
+      poNo : this.pono,
+      tagComment: this.Tag_Comment,
+      printValue: this.printValue
+    }
+    console.log(requestObject);
 
   }
   getOrdersInfo() {
@@ -101,13 +109,18 @@ export class OrdersInfoComponent implements OnInit {
             (k) => (obj[k] = typeof obj[k] == 'string' ? obj[k].trim() : obj[k])
           );
         });
+        this.filteredValueLength = this.orders.length
         if (this.orders.length > 0) {
           const col = Object.keys(this.orders[0]);
           this.cols = col;
           this.filterdColumn = 'PONO';
-          this.table.filter('', 'equals', 'equals');
-          this.noOfPages = 20;
-          this.table.filteredValue = this.orders;
+          if(  this.table){
+            this.table.filter('', 'equals', 'equals');
+            this.noOfPages = 20;
+            this.table.filteredValue = this.orders;
+            this.filteredValueLength = this.table.filteredValue.length
+          }
+
           this.loading = false;
         }
         this.selectedPo = '';
@@ -132,8 +145,12 @@ export class OrdersInfoComponent implements OnInit {
       header: 'Enter Racking Location',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
+      data: {
+        isNewPO: true,
+    },
     });
     this.ref.onClose.subscribe((val) => {
+      this.pono = val;
     });
   }
 
@@ -142,8 +159,12 @@ export class OrdersInfoComponent implements OnInit {
       header: 'Tag_Comment',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
+      data: {
+        isNewPO: true,
+    },
     });
     this.ref.onClose.subscribe((val) => {
+      this.Tag_Comment = val;
     });
   }
 
