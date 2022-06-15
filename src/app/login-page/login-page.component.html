@@ -1,24 +1,24 @@
-<div class="loginPageWrap">
+<div class="loginPageWrap theme-background">
   <div style="padding:48px">
     <h5>"Login with your Employee ID and select the District"</h5>
     <p-progressSpinner *ngIf="isLoading"></p-progressSpinner>
-    <div>
+    <div class = "keypadWrapper">
       <div class="p-float-label" style="padding:24px">
         <div style="padding-right:8px"><input id="float-input" type="password" [(ngModel)]="empId" pInputText></div>
         <button pButton type="button" label="clear" class="buttonStyle" (click)="clear()"></button>
       </div>
-      <div class="grid-container">
-        <button pButton type="button" label="7" (click)="empId = empId +'7'"></button>
-        <button pButton type="button" label="8" (click)="empId = empId +'8'"></button>
-        <button pButton type="button" label="9" (click)="empId = empId +'9'"></button>
-        <button pButton type="button" label="4" (click)="empId = empId +'4'"></button>
-        <button pButton type="button" label="5" (click)="empId = empId +'5'"></button>
-        <button pButton type="button" label="6" (click)="empId = empId +'6'"></button>
-        <button pButton type="button" label="1" (click)="empId = empId +'1'"></button>
-        <button pButton type="button" label="2" (click)="empId = empId +'2'"></button>
-        <button pButton type="button" label="3" (click)="empId = empId +'3'"></button>
-        <button pButton type="button" label="0" (click)="empId = empId +'0'"></button>
-        <button pButton type="button" icon="pi pi-arrow-right" (click)="onSubmit()" [disabled]="!empId"></button>
+      <div class="grid-container theme-background ">
+        <button pButton type="button" label="7" (click)="empId = empId +'7'" class="theme-btn"></button>
+        <button pButton type="button" label="8" (click)="empId = empId +'8'"  class="theme-btn"></button>
+        <button pButton type="button" label="9" (click)="empId = empId +'9'" class="theme-btn"></button>
+        <button pButton type="button" label="4" (click)="empId = empId +'4'" class="theme-btn"></button>
+        <button pButton type="button" label="5" (click)="empId = empId +'5'" class="theme-btn"></button>
+        <button pButton type="button" label="6" (click)="empId = empId +'6'" class="theme-btn"></button>
+        <button pButton type="button" label="1" (click)="empId = empId +'1'" class="theme-btn"></button>
+        <button pButton type="button" label="2" (click)="empId = empId +'2'" class="theme-btn"></button>
+        <button pButton type="button" label="3" (click)="empId = empId +'3'" class="theme-btn"></button>
+        <button pButton type="button" label="0" (click)="empId = empId +'0'" class="theme-btn"></button>
+        <button pButton type="button" icon="pi pi-arrow-right" (click)="onSubmit()" [disabled]="!empId" class="theme-btn"></button>
       </div>
     </div>
     <br>

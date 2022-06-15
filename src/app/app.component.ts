@@ -12,7 +12,8 @@ export class AppComponent implements OnInit {
   empId!: string
   displayError = false;
   error!: string;
-
+  isLight = true;
+themeName= 'light-theme'
   constructor( public router:Router, private errorService: ErrorHandlerService) { }
 
   ngOnInit(): void {
@@ -34,9 +35,15 @@ export class AppComponent implements OnInit {
   }
 
   toggleButton() {
+    this.isLight = !this.isLight;
+   
+    this.themeName = this.isLight ? 'light-theme' : 'dark-theme';
+   let themeElement = document.getElementById('theme-css');
+   themeElement?.setAttribute('href', 'assets/themes/' +  this.themeName + '.css')
+   console.log('assets/themes/' +  this.themeName + '.css')
     var element = document.body;
-    element.classList.toggle("dark-theme");
-      console.log('testing dark mode', element)
+    element.classList.toggle("theme-background");
+    //   console.log('testing dark mode', element)
   }
 
 }

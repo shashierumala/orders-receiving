@@ -1,19 +1,21 @@
-  <!-- <button (click)="toggleButton()">Toggle dark theme</button> -->
+  <button (click)="toggleButton()">Toggle dark theme</button>
+  <div [ngClass]="themeName">
     <p-toolbar>
-    <span>
-      <img src="./assets/images/TW-METALS-NEXT-GEN.png" style="width:350px;height: 100px;">
-    </span>
-    <span *ngIf="router.url !== '/login'" class="flex" style="float: right; padding-right: 4px;">
-      <button pButton type ="button" label="logout" icon="pi pi-sign-out" (click)="onLogout()"></button>
-    </span>
-  </p-toolbar>
-  <app-loading></app-loading>
- <router-outlet></router-outlet>
-<p-dialog header="Error" [(visible)]="displayError" [modal]="true" [style]="{width: '50vw'}"
-    [draggable]="false" [resizable]="false">
-    <p class="m-0"> <strong>{{error}}</strong>
-  </p>
-        <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="displayError=false" label="Ok" styleClass="p-button-text"></p-button>
-        </ng-template>
-</p-dialog>
+      <span>
+        <img src="./assets/images/TW-METALS-NEXT-GEN.png" style="width:350px;height: 100px;">
+      </span>
+      <span *ngIf="router.url !== '/login'" class="flex" style="float: right; padding-right: 4px;">
+        <button pButton type ="button" label="logout" icon="pi pi-sign-out" (click)="onLogout()"></button>
+      </span>
+    </p-toolbar>
+    <app-loading class="theme-background"></app-loading>
+   <router-outlet></router-outlet>
+  <p-dialog header="Error" [(visible)]="displayError" [modal]="true" [style]="{width: '50vw'}"
+      [draggable]="false" [resizable]="false">
+      <p class="m-0"> <strong>{{error}}</strong>
+    </p>
+          <ng-template pTemplate="footer">
+          <p-button icon="pi pi-check" (click)="displayError=false" label="Ok" styleClass="p-button-text"></p-button>
+          </ng-template>
+  </p-dialog>
+  </div>

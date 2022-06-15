@@ -1,0 +1,22 @@
+@use 'colors' as c;
+
+
+$theme-background-color: (
+light: c.$white,
+dark: c.$Ebony
+);
+
+$theme-background-text-color: (
+light: c.$Ebony,
+dark: c.$white
+);
+
+$theme-btn-text-color: (
+
+dark: c.$light-black
+);
+
+$theme-btn-background-color: (
+
+dark: c.$sky-blue
+);
