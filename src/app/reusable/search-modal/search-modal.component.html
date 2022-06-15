@@ -1,26 +1,26 @@
 <div style="padding:48px">
-  <div>
+  <div class ="keypadWrapper">
     <div class="p-float-label">
       <div style="padding-right:8px"><input id="float-input" type="text" inputmode="text" [(ngModel)]="value"
           pInputText></div>
-      <button pButton type="button" icon="pi pi-arrow-right" label="submit" (click)="onSubmit()"
+      <button pButton type="button" icon="pi pi-arrow-right" label="submit" (click)="onSubmit()" class="theme-btn"
         [disabled]="isPoNumber ? value.length >8 : !value"></button>
     </div>
     <h3 *ngIf="errorMessage" style="color: red; padding-bottom:1rem">
       {{errorMessage}}
     </h3>
-    <div class="grid-container">
-      <button pButton type="button" label="7" (click)="value = value +'7'"></button>
-      <button pButton type="button" label="8" (click)="value = value +'8'"></button>
-      <button pButton type="button" label="9" (click)="value = value +'9'"></button>
-      <button pButton type="button" label="4" (click)="value = value +'4'"></button>
-      <button pButton type="button" label="5" (click)="value = value +'5'"></button>
-      <button pButton type="button" label="6" (click)="value = value +'6'"></button>
-      <button pButton type="button" label="1" (click)="value = value +'1'"></button>
-      <button pButton type="button" label="2" (click)="value = value +'2'"></button>
-      <button pButton type="button" label="3" (click)="value = value +'3'"></button>
-      <button pButton type="button" label="0" (click)="value = value +'0'"></button>
-      <button pButton type="button" label="clr" class="buttonStyle" (click)="clear()"></button>
+    <div class="grid-container theme-background">
+      <button pButton type="button" label="7" (click)="value = value +'7'" class="theme-btn"></button>
+      <button pButton type="button" label="8" (click)="value = value +'8'" class="theme-btn"></button>
+      <button pButton type="button" label="9" (click)="value = value +'9'" class="theme-btn"></button>
+      <button pButton type="button" label="4" (click)="value = value +'4'" class="theme-btn"></button>
+      <button pButton type="button" label="5" (click)="value = value +'5'" class="theme-btn"></button>
+      <button pButton type="button" label="6" (click)="value = value +'6'" class="theme-btn"></button>
+      <button pButton type="button" label="1" (click)="value = value +'1'" class="theme-btn"></button>
+      <button pButton type="button" label="2" (click)="value = value +'2'" class="theme-btn"></button>
+      <button pButton type="button" label="3" (click)="value = value +'3'" class="theme-btn"></button>
+      <button pButton type="button" label="0" (click)="value = value +'0'" class="theme-btn"></button>
+      <button pButton type="button" label="clr" class="buttonStyle" (click)="clear()" class="theme-btn"></button>
     </div>
     <br>
   </div>
