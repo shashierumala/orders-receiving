@@ -1,4 +1,4 @@
-<div style="padding:48px">
+<div style="padding:48px theme-background">
   <div class ="keypadWrapper">
     <div class="p-float-label">
       <div style="padding-right:8px"><input id="float-input" type="text" inputmode="text" [(ngModel)]="value"
@@ -9,7 +9,7 @@
     <h3 *ngIf="errorMessage" style="color: red; padding-bottom:1rem">
       {{errorMessage}}
     </h3>
-    <div class="grid-container theme-background">
+    <div class="grid-container theme-background ">
       <button pButton type="button" label="7" (click)="value = value +'7'" class="theme-btn"></button>
       <button pButton type="button" label="8" (click)="value = value +'8'" class="theme-btn"></button>
       <button pButton type="button" label="9" (click)="value = value +'9'" class="theme-btn"></button>
@@ -20,7 +20,7 @@
       <button pButton type="button" label="2" (click)="value = value +'2'" class="theme-btn"></button>
       <button pButton type="button" label="3" (click)="value = value +'3'" class="theme-btn"></button>
       <button pButton type="button" label="0" (click)="value = value +'0'" class="theme-btn"></button>
-      <button pButton type="button" label="clr" class="buttonStyle" (click)="clear()" class="theme-btn"></button>
+      <button pButton type="button" label="clr" class="buttonStyle theme-btn" (click)="clear()"></button>
     </div>
     <br>
   </div>
