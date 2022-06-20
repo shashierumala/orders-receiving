@@ -35,8 +35,9 @@ export class AuthInterceptor implements HttpInterceptor {
         } else {
           //server-side error
           errorMessage = `Error status: ${error.status}\nMessage: ${error.message}`;
-          errorMsg = error.message;
+          errorMsg = error?.error?.message;
         }
+        console.log(error?.error?.message)
         this.errorService.errorMessage$.next(errorMsg);
         return throwError(() => new Error(errorMessage));
       })

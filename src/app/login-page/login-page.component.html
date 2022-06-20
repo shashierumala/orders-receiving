@@ -26,8 +26,8 @@
       {{errorMessage}}
     </h3>
   </div>
-  <div *ngIf="isShown" class="loginAlignmentStyle">
-    <h2 style="color:#004990; font-style:italic; text-align: center;">Select District</h2>
+  <div *ngIf="isShown" class="loginAlignmentStyle theme-background">
+    <h2 class="listBox">Select District</h2>
     <p-listbox [options]="empList" [(ngModel)]="selectedDist" optionLabel="EMPDIST" optionValue="EMPDIST"
       (onClick)="navigateToMain()" [listStyle]="{'width':'15rem'}"></p-listbox>
   </div>

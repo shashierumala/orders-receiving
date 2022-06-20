@@ -24,6 +24,7 @@
     --shadow-dark: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
     --shadow-bottom: 0 4px 2px -2px #00000072;
     --shadow-top: -2px 2px 4px 0 #00000072;
+    --color-ebony: #2a323d;
 }
 
 
@@ -65,7 +66,12 @@ body {
       &::-webkit-scrollbar-thumb {
         background-color:  var(--color-primary);
         outline: 1px solid var(--color-grey-dark);
-      }   
+      } 
+      
+     &.body-background-dark{
+        background-color: var( --color-ebony) !important;
+        //color: map-get(tv.$theme-background-text-color, --color-white) !important;
+    }
 }
 
 .p-listbox .p-listbox-list .p-listbox-item {

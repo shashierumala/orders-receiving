@@ -4,7 +4,6 @@
 }
 
 .buttonStyle {
-  background-color: var(--color-primary);
   width: 90px;
   height: 48px;
 }
@@ -19,10 +18,8 @@
 }
 
 .grid-container>button {
-  background-color: var(--color-primary);
   text-align: center;
   font-size: 30px;
-  color: var(--color-white);
   width: 120px;
   height: 59px;
   border-radius: 11px;
