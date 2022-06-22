@@ -40,6 +40,7 @@
 .loginPageWrap {
   display: flex;
   flex-wrap: wrap;
+  height:100%
 }
 
 .keypadWrapper {
@@ -55,4 +56,5 @@
   color: var(--color-primary); 
   font-style:italic; 
   text-align: center;
+  font-size: medium;
 }
