@@ -8,7 +8,7 @@ import { ErrorHandlerService } from './services/error-handler.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'orders-receiving';
+  title = 'receiving';
   empId!: string;
   displayError = false;
   error!: string;
@@ -17,7 +17,13 @@ export class AppComponent implements OnInit {
   constructor(
     public router: Router,
     private errorService: ErrorHandlerService
-  ) {}
+  ) {
+    const theme = localStorage.getItem('theme');
+    if(theme !== null){
+      this.isLight = theme === 'light' ?  false : true
+      this.toggleButton();
+    }
+  }
 
   ngOnInit(): void {
     // const isDarkMode:string = localStorage.getItem('isDark') || '';
@@ -41,8 +47,8 @@ export class AppComponent implements OnInit {
     localStorage.removeItem('EmployeeID');
     localStorage.removeItem('DIST');
     localStorage.removeItem('EMPSystemName');
-    localStorage.removeItem('order-summary');
-    localStorage.removeItem('order-Info');
+    localStorage.removeItem('tag-summary');
+    localStorage.removeItem('tag-list');
     this.router.navigate(['/login']);
   }
 
@@ -55,7 +61,9 @@ export class AppComponent implements OnInit {
       'assets/themes/' + this.themeName + '.css'
     );
     var element = document.body;
-    element.classList.toggle('body-background-dark');
+    // const className = this.isLight ? 'body-background-light' : 'body-background-dark'
+   // element.classList.toggle('body-background-dark');
+    localStorage.setItem('theme', this.isLight ? 'light' : 'dark');
     console.log('themename', this.themeName)
     // if(this.themeName == 'dark-theme') {
     // localStorage.setItem('isDark', 'dark');

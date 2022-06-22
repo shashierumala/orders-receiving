@@ -72,6 +72,10 @@ body {
         background-color: var( --color-ebony) !important;
         //color: map-get(tv.$theme-background-text-color, --color-white) !important;
     }
+    &.body-background-light{
+        background-color: var( --color-white) !important;
+        //color: map-get(tv.$theme-background-text-color, --color-white) !important;
+    }
 }
 
 .p-listbox .p-listbox-list .p-listbox-item {

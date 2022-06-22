@@ -1,13 +1,13 @@
   <div [ngClass]="themeName">
-    <div *ngIf="isLight" style="padding-top: 16px; padding-left: 16px; position:fixed; bottom:20px; z-index:1200;">
+    <div *ngIf="isLight" style="padding-top: 16px; padding-left: 16px; position:fixed; bottom:160px; z-index:1200;">
       <button pButton type="button" icon="pi pi-sun" class="p-button-rounded p-button-secondary theme-btn"(click)="toggleButton()"></button>
       </div>
-      <div *ngIf="!isLight" style="padding-top: 16px; padding-left: 16px; position:fixed; bottom:20px; z-index:1200;">
+      <div *ngIf="!isLight" style="padding-top: 16px; padding-left: 16px; position:fixed; bottom:160px; z-index:1200;">
         <button pButton type="button" icon="pi pi-moon" class="p-button-rounded p-button-secondary theme-btn"(click)="toggleButton()"></button>
         </div>
     <p-toolbar>
       <span>
-        <img src="./assets/images/TW-METALS-NEXT-GEN.png" style="width:350px;height: 100px;">
+        <img src="./assets\images\nextGen4.0-receiving.png" style="width:350px;height: 100px;">
       </span>
       <span *ngIf="router.url !== '/login'" class="flex" style="float: right; padding-right: 4px;">
         <button pButton type ="button" label="logout" icon="pi pi-sign-out" (click)="onLogout()"></button>

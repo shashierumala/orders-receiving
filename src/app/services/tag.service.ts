@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class OrdersService {
+export class TagService {
   hostUrl: string = environment.url;
   receiveUrl: string = '/receiving?dist=';
   printUrl: string = '/receiving/pit';

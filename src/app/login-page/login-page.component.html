@@ -2,7 +2,7 @@
   <div style="padding:48px">
     <h5>"Login with your Employee ID and select the District"</h5>
     <p-progressSpinner *ngIf="isLoading"></p-progressSpinner>
-    <div class = "keypadWrapper">
+    <div>
       <div class="p-float-label" style="padding:24px">
         <div style="padding-right:8px"><input id="float-input" type="password" [(ngModel)]="empId" pInputText></div>
         <button pButton type="button" label="clear" class="buttonStyle theme-btn" (click)="clear()"></button>

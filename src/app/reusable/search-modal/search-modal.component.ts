@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { OrdersService } from '../../services/orders.service';
+import { TagService } from '../../services/tag.service';
 
 @Component({
   selector: 'app-search-modal',
@@ -12,7 +12,7 @@ export class SearchModalComponent implements OnInit {
   errorMessage!: string;
   isPoNumber = false;
   constructor(
-    private orderService: OrdersService,
+    private tagService: TagService,
     private ref: DynamicDialogRef,
     private config: DynamicDialogConfig
   ) {
@@ -26,7 +26,7 @@ export class SearchModalComponent implements OnInit {
 
   onSubmit() {
     if (this.isPoNumber ? this.value.length >= 7 : this.value) {
-      this.orderService.searchValue.next(this.value);
+      this.tagService.searchValue.next(this.value);
       this.ref.close(this.value);
     }
     {

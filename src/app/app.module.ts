@@ -6,13 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { OrdersService } from './services/orders.service';
-import { OrdersInfoComponent } from './orders-info/orders-info.component';
+import { TagService } from './services/tag.service';
+import { TagListComponent } from './tag-list/tag-list.component';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { FieldsetModule } from 'primeng/fieldset';
-import { OrderSummaryComponent } from './order-summary/order-summary.component';
+import { TagSummaryComponent } from './tag-summary/tag-summary.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ErrorComponentComponent } from './reusable/error-component/error-component.component';
@@ -27,7 +27,7 @@ import { DialogModule } from 'primeng/dialog';
 import { CardModule } from 'primeng/card';
 import { ToastModule } from 'primeng/toast';
 import { SplitterModule } from 'primeng/splitter';
-import { OrderComponent } from './order/order.component';
+import { TagComponent } from './tag/tag.component';
 import { PaginatorModule } from 'primeng/paginator';
 import { DataViewModule } from 'primeng/dataview';
 import { DividerModule } from 'primeng/divider';
@@ -42,11 +42,11 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 @NgModule({
   declarations: [
     AppComponent,
-    OrdersInfoComponent,
-    OrderSummaryComponent,
+    TagListComponent,
+    TagSummaryComponent,
     ErrorComponentComponent,
     LoginPageComponent,
-    OrderComponent,
+    TagComponent,
     LoadingComponent,
     SearchModalComponent,
     LocationSearchModalComponent,
@@ -80,7 +80,7 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
   bootstrap: [AppComponent],
   providers: [
     DialogService,
-    OrdersService,
+    TagService,
     ConfirmationService,
     AuthService,
     TokenStorageService,

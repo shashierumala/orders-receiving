@@ -5,7 +5,7 @@ import { EmployeeInfo } from '../employee';
 //import { DEFAULT_INTERRUPTSOURCES, Idle } from '@ng-idle/core';
 import { AppLoadingService } from '../services/app-loading.service';
 import { AuthService } from '../services/auth.service';
-import { OrdersService } from '../services/orders.service';
+import { TagService } from '../services/tag.service';
 
 @Component({
   selector: 'app-login-page',
@@ -28,7 +28,7 @@ export class LoginPageComponent implements OnInit {
   constructor(
     //private idle: Idle,
     private router: Router,
-    private orderService: OrdersService,
+    private tagService: TagService,
     private authService: AuthService,
     private loadingService: AppLoadingService
   ) {}
@@ -74,16 +74,16 @@ export class LoginPageComponent implements OnInit {
   //   });
   // }
   navigateToMain() {
-    this.orderService.selectedEmployee = this.empList.filter(
+    this.tagService.selectedEmployee = this.empList.filter(
       (val) => val.EMPDIST === this.selectedDist
     )[0];
-    this.orderService.selectedDist = this.selectedDist;
+    this.tagService.selectedDist = this.selectedDist;
     localStorage.setItem('DIST', this.selectedDist);
     localStorage.setItem(
       'EMPSystemName',
-      this.orderService.selectedEmployee.EMPSystemName
+      this.tagService.selectedEmployee.EMPSystemName
     );
-    this.router.navigateByUrl('order-info');
+    this.router.navigateByUrl('tag-list');
   }
 
   clear() {

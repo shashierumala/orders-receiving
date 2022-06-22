@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { OrdersService } from '../services/orders.service';
+import { TagService } from '../services/tag.service';
 import { Order } from '../orders';
 import { EmployeeInfo } from '../employee';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -11,12 +11,12 @@ import { AppLoadingService } from '../services/app-loading.service';
 import { LocationSearchModalComponent } from '../location-search-modal/location-search-modal.component';
 
 @Component({
-  selector: 'app-order-summary',
-  templateUrl: './order-summary.component.html',
-  styleUrls: ['./order-summary.component.scss'],
+  selector: 'app-tag-summary',
+  templateUrl: './tag-summary.component.html',
+  styleUrls: ['./tag-summary.component.scss'],
   providers: [MessageService],
 })
-export class OrderSummaryComponent implements OnInit {
+export class TagSummaryComponent implements OnInit {
   selectedOrder!: any;
   errorHandler: any;
   errorMessage: any;
@@ -37,7 +37,7 @@ export class OrderSummaryComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private orderService: OrdersService,
+    private tagService: TagService,
     private messageService: MessageService,
     private dialogService: DialogService,
     private loadingService: AppLoadingService,
@@ -55,11 +55,11 @@ export class OrderSummaryComponent implements OnInit {
 
   loadOrder() {
     this.loadingService.setLoading(true);
-    this.orderService
+    this.tagService
       .selectOrder(this.dist, this.item, this.tag)
       .subscribe((res) => {
         this.selectedOrder = res.data[0];
-        this.orderService.selectedOrder = res.data[0];
+        this.tagService.selectedOrder = res.data[0];
         this.loadingService.setLoading(false);
       });
   }
@@ -69,17 +69,17 @@ export class OrderSummaryComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(['order-info']);
+    this.router.navigate(['tag-list']);
   }
 
   onUpdateClick(loc: any) {
     if (loc) {
       this.loadingService.setLoading(true);
       this.selectedOrder = [];
-      this.orderService.sendLocation(loc).subscribe(
+      this.tagService.sendLocation(loc).subscribe(
         (data) => {
           this.selectedOrder = data.receiving[0];
-          this.orderService.selectedOrder = data.receiving[0];
+          this.tagService.selectedOrder = data.receiving[0];
           this.loadingService.setLoading(false);
           this.messageService.add({
             severity: 'success',
@@ -97,7 +97,7 @@ export class OrderSummaryComponent implements OnInit {
   }
 
   onSubmit() {
-    this.orderService
+    this.tagService
       .printTag(
         this.selectedOrder.DIST,
         this.selectedOrder.TAG,
@@ -119,10 +119,10 @@ export class OrderSummaryComponent implements OnInit {
     if (length) {
       this.loadingService.setLoading(true);
       this.selectedOrder = [];
-      this.orderService.sendLength(length).subscribe(
+      this.tagService.sendLength(length).subscribe(
         (data) => {
           this.selectedOrder = data.receiving[0];
-          this.orderService.selectedOrder = data.receiving[0];
+          this.tagService.selectedOrder = data.receiving[0];
           this.loadingService.setLoading(false);
           this.messageService.add({
             severity: 'success',
@@ -143,10 +143,10 @@ export class OrderSummaryComponent implements OnInit {
     if (width) {
       this.loadingService.setLoading(true);
       this.selectedOrder = [];
-      this.orderService.sendWidth(width).subscribe(
+      this.tagService.sendWidth(width).subscribe(
         (data) => {
           this.selectedOrder = data.receiving[0];
-          this.orderService.selectedOrder = data.receiving[0];
+          this.tagService.selectedOrder = data.receiving[0];
           this.loadingService.setLoading(false);
           this.messageService.add({
             severity: 'success',
@@ -167,10 +167,10 @@ export class OrderSummaryComponent implements OnInit {
     if (pieces) {
       this.loadingService.setLoading(true);
       this.selectedOrder = [];
-      this.orderService.sendPieces(pieces).subscribe(
+      this.tagService.sendPieces(pieces).subscribe(
         (data) => {
           this.selectedOrder = data.receiving[0];
-          this.orderService.selectedOrder = data.receiving[0];
+          this.tagService.selectedOrder = data.receiving[0];
           this.loadingService.setLoading(false);
           this.messageService.add({
             severity: 'success',
@@ -279,7 +279,7 @@ export class OrderSummaryComponent implements OnInit {
     ) {
       this.loadingService.setLoading(true);
       this.selectedOrder = [];
-      this.orderService.sendStatus('1').subscribe(
+      this.tagService.sendStatus('1').subscribe(
         (data) => {
           this.confirm();
           this.loadingService.setLoading(false);
@@ -306,7 +306,7 @@ export class OrderSummaryComponent implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
           this.messageService.add({severity:'info', summary:'Confirmed', detail:'Finished Receving'});
-          this.router.navigateByUrl('order-info');
+          this.router.navigateByUrl('tag-list');
       },
       reject: () => {
           this.messageService.add({severity:'error', summary:'Rejected', detail:'Not proceeded further'});

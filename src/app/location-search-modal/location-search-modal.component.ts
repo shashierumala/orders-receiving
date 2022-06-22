@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { OrdersService } from '../services/orders.service';
+import { TagService } from '../services/tag.service';
 
 @Component({
   selector: 'app-location-search-modal',
@@ -12,7 +12,7 @@ export class LocationSearchModalComponent implements OnInit {
   errorMessage!: string;
   lengthValue = 7;
   constructor(
-    private orderService: OrdersService,
+    private tagService: TagService,
     private ref: DynamicDialogRef,
    private  config: DynamicDialogConfig
   ) {
@@ -26,7 +26,7 @@ export class LocationSearchModalComponent implements OnInit {
 
   onSubmit() {
     if(!this.config?.data?.isNewPO){
-      this.orderService.searchValue.next(this.value);
+      this.tagService.searchValue.next(this.value);
     }
     this.ref.close(this.value);
   }

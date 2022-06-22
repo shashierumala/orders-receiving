@@ -6,7 +6,7 @@ import {
   Input,
   ChangeDetectorRef,
 } from '@angular/core';
-import { OrdersService } from '../services/orders.service';
+import { TagService } from '../services/tag.service';
 import { Order } from '../orders';
 import { Table } from 'primeng/table';
 import { Router } from '@angular/router';
@@ -19,10 +19,10 @@ import { LocationSearchModalComponent } from '../location-search-modal/location-
 
 @Component({
   selector: 'app-orders-info',
-  templateUrl: './orders-info.component.html',
-  styleUrls: ['./orders-info.component.scss'],
+  templateUrl: './tag-list.component.html',
+  styleUrls: ['./tag-list.component.scss'],
 })
-export class OrdersInfoComponent implements OnInit {
+export class TagListComponent implements OnInit {
   datasource: Order[] = [];
   orders: Order[] = [];
   ordersInfo: Order[] = [];
@@ -51,7 +51,7 @@ export class OrdersInfoComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private ordersService: OrdersService,
+    private tagService: TagService,
     private errorHandler: ErrorHandlerService,
     private dialogService: DialogService,
     private loadingService: AppLoadingService
@@ -59,13 +59,13 @@ export class OrdersInfoComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.selectedDist) {
-      this.selectedDist = this.ordersService.selectedDist;
+      this.selectedDist = this.tagService.selectedDist;
     } else {
       const orders: any = localStorage.getItem('DIST');
       this.selectedDist = JSON.parse(orders);
     }
     this.getOrdersInfo();
-    this.ordersService.searchValue.subscribe((val) => {
+    this.tagService.searchValue.subscribe((val) => {
       if (val !== '') {
         this.selectedPo = val;
         if (this.table && this.orders.length > 0) {
@@ -101,7 +101,7 @@ export class OrdersInfoComponent implements OnInit {
   getOrdersInfo() {
     this.orders = [];
     this.loadingService.setLoading(true);
-    this.ordersService.getOrders().subscribe(
+    this.tagService.getOrders().subscribe(
       (res) => {
         this.orders = res.data;
         this.orders.forEach((obj: any) => {
